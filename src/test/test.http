@@ -1,0 +1,13 @@
+POST http://localhost:8080/SkillBuilders_war/registrazione
+Content-Type: application/json
+
+{
+"nome": "Francesco",
+"password": "specifichebrutte",
+"email": "sorghi@gmail.com",
+"anno": 3,
+"indirizzo": "informatico",
+"sezione": "B",
+"quartiere": "Navile"
+}
+
