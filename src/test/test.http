@@ -11,3 +11,11 @@ Content-Type: application/json
 "quartiere": "Navile"
 }
 
+### ma vaffanculo, però è giusto se ci pensi
+POST http://localhost:8080/SkillBuilders_war/accesso
+Content-Type: application/json
+
+{
+"email": "sorghi@gmail.com",
+"password": "specifichebrutte"
+}

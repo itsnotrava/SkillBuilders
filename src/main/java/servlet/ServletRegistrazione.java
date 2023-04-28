@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import dao.UtenzeDao;
-import exception.EmailAlreadyTakenException;
+//import dao.UtenzeDao;
+//import exception.EmailAlreadyTakenException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -27,7 +27,7 @@ public class ServletRegistrazione extends HttpServlet {
 		String anno = temp.get("anno").toString(); // TROVO IL NOME
 		String indirizzo = temp.get("indirizzo").toString(); // TROVO L'INDIRIZZO
 		String sezione = temp.get("sezione").toString(); // TROVO LA SEZIONE
-		String quartiere = temp.get("quaetiere").toString(); // TROVO LA POSIZIONE
+		String quartiere = temp.get("quartiere").toString(); // TROVO LA POSIZIONE
 
 
 		JsonObject responseJson = new JsonObject();
