@@ -1,4 +1,4 @@
-POST http://localhost:8080/SkillBuilders_war/registrazione
+POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
 Content-Type: application/json
 
 {
@@ -11,8 +11,8 @@ Content-Type: application/json
 "quartiere": "Navile"
 }
 
-### ma vaffanculo, però è giusto se ci pensi
-POST http://localhost:8080/SkillBuilders_war/accesso
+###
+POST http://13.42.233.112:8080/skillbuilders_1.0/accesso
 Content-Type: application/json
 
 {

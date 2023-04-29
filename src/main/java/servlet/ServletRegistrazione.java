@@ -1,12 +1,9 @@
 package servlet;
 
 import java.io.*;
-import java.sql.SQLException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-//import dao.UtenzeDao;
-//import exception.EmailAlreadyTakenException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
