@@ -58,3 +58,13 @@ Content-Type: application/json
   "email": "sorghi@gmail.com",
   "flagTutor": true
 }
+
+### Visualizza tutor
+POST http://localhost:8080/SkillBuilders_war_exploded/visualizzaTutor
+Content-Type: application/json
+
+{
+  "anno": 3,
+  "provincia": "bolognetta",
+  "indirizzo": "informatica"
+}
