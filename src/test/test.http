@@ -1,21 +1,51 @@
-POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
+# INDIRIZZO REMOTO: http://13.42.233.112:8080/skillbuilders_1.0/
+# INDIRIZZO LOCALE: http://localhost:8080/SkillBuilders_war_exploded/
+
+### Registrazione
+POST http://localhost:8080/SkillBuilders_war_exploded/registrazione
 Content-Type: application/json
 
 {
-"nome": "Francesco",
-"password": "specifichebrutte",
-"email": "sorghi@gmail.com",
-"anno": 3,
-"indirizzo": "informatico",
-"sezione": "B",
-"quartiere": "Navile"
+  "nome": "Francesco",
+  "password": "specifichebrutte",
+  "email": "sorghi@gmail.com",
+  "anno": 3,
+  "indirizzo": "informatico",
+  "sezione": "B",
+  "quartiere": "Navile"
 }
 
-###
-POST http://13.42.233.112:8080/skillbuilders_1.0/accesso
+### Accesso
+POST http://localhost:8080/SkillBuilders_war_exploded/accesso
 Content-Type: application/json
 
 {
-"email": "sorghi@gmail.com",
-"password": "specifichebrutte"
+  "email": "sorghi@gmail.com",
+  "password": "ciao"
+}
+
+### Visualizza proprio
+POST http://localhost:8080/SkillBuilders_war_exploded/visualizzaProprio
+Content-Type: application/json
+
+{
+  "email": "sorghi@gmail.com"
+}
+
+### Visualizza altrui
+POST http://localhost:8080/SkillBuilders_war_exploded/visualizzaAltrui
+Content-Type: application/json
+
+{
+  "email": "sorghi@gmail.com"
+}
+
+### Visualizza ticket
+POST http://localhost:8080/SkillBuilders_war_exploded/visualizzaTicket
+Content-Type: application/json
+
+{
+  "anno": 3,
+  "provincia": "bolognetta",
+  "materia": "informatica"
 }

@@ -18,25 +18,28 @@ public class ServletRegistrazione extends HttpServlet {
 		JsonObject temp = new Gson().fromJson(body, JsonObject.class);
 		// fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
-		String nome = temp.get("nome").toString(); // TROVO IL NOME
-		String password = temp.get("password").toString(); // TROVO LA PASSWORD
-		String email = temp.get("email").toString(); // TROVO LA MAIL
-		String anno = temp.get("anno").toString(); // TROVO IL NOME
-		String indirizzo = temp.get("indirizzo").toString(); // TROVO L'INDIRIZZO
-		String sezione = temp.get("sezione").toString(); // TROVO LA SEZIONE
-		String quartiere = temp.get("quartiere").toString(); // TROVO LA POSIZIONE
-
-
 		JsonObject responseJson = new JsonObject();
-		responseJson.addProperty("risultato", "sucesso!");
-
+		try {
+			String nome = temp.get("nome").toString(); // TROVO IL NOME
+			String password = temp.get("password").toString(); // TROVO LA PASSWORD
+			String email = temp.get("email").toString(); // TROVO LA MAIL
+			String anno = temp.get("anno").toString(); // TROVO IL NOME
+			String indirizzo = temp.get("indirizzo").toString(); // TROVO L'INDIRIZZO
+			String sezione = temp.get("sezione").toString(); // TROVO LA SEZIONE
+			String quartiere = temp.get("quartiere").toString(); // TROVO LA POSIZIONE
+			// TODO: implementare registrazione effettiva
+			responseJson.addProperty("risultato", "sucesso!");
+			responseJson.addProperty("contenuto", "registrazione avvenuta");
+		} catch (NullPointerException e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "formato del body scorretto");
+		}
 
 		// Invio il risultato al client
 		PrintWriter printWriter = response.getWriter();
 		printWriter.println(responseJson.toString());
 		printWriter.flush();
 	}
-
 
 	private static String getBody(HttpServletRequest request) throws IOException {
 		StringBuilder sb = new StringBuilder();

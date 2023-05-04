@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "VisualizzaProprio", value = "/VisualizzaProprio")
+@WebServlet(name = "VisualizzaProprio", value = "/visualizzaProprio")
 public class ServletVisualizzaProprio extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -37,7 +37,6 @@ public class ServletVisualizzaProprio extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
         printWriter.println(responseJson.toString());
         printWriter.flush();
-
     }
 
     // PRESA DA INTERNET, SI OCCUPA DI FARE IL BODY DELLA RICHIESTA
