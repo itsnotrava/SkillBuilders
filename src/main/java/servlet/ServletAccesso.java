@@ -15,19 +15,25 @@ public class ServletAccesso extends HttpServlet {
 
 		String body = getBody(request);
 		// CREDO UN JSON PER IL RISULTATO
-		JsonObject temp = new Gson().fromJson(body, JsonObject.class);
+		JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);
 		// fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
-		String nome = temp.get("email").toString(); // TROVO IL NOME (email)
-		String password = temp.get("password").toString(); // TROVO IL NOME (email)
-        JsonObject responseJson = new JsonObject();
-		responseJson.addProperty("risultato", "sucesso!");
+		JsonObject responseJson = new JsonObject();
+		try {
+			String nome = jsBody.get("email").toString(); // TROVO IL NOME (email)
+			String password = jsBody.get("password").toString(); // TROVO IL NOME (email)
+			// TODO: implementare accesso effettivo
+			responseJson.addProperty("risultato", "sucesso!");
+			responseJson.addProperty("contenuto", "accesso avvenuto");
+		} catch (NullPointerException e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "formato del body scorretto");
+		}
 
 		// Invio il risultato al client
 		PrintWriter printWriter = response.getWriter();
 		printWriter.println(responseJson.toString());
 		printWriter.flush();
-
 	}
 
 	// PRESA DA INTERNET, SI OCCUPA DI FARE IL BODY DELLA RICHIESTAA

@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "VisualizzaAltrui", value = "/VisualizzaAltrui")
+@WebServlet(name = "VisualizzaAltrui", value = "/visualizzaAltrui")
 public class ServletVisualizzaAltrui extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -22,21 +22,20 @@ public class ServletVisualizzaAltrui extends HttpServlet {
         //String password = temp.get("password").toString(); // TROVO IL NOME (email)
         JsonObject responseJson = new JsonObject();
         responseJson.addProperty("risultato", "sucesso!");
-        JsonObject contenutoJson = new JsonObject;
-        contenutoJson.addProperty (“nome”, “Francesco”);
-        contenutoJson.addProperty (“email”, “sorghi@gmail.com”);
-        contenutoJson.addProperty (“anno”, "3");
-        contenutoJson.addProperty (“indirizzo”, “informatico”);
-        contenutoJson.addProperty (“sezione”, “B”);
-        contenutoJson.addProperty (“quartiere”, “Navile”);
+        JsonObject contenutoJson = new JsonObject();
+        contenutoJson.addProperty("nome", "Francesco");
+        contenutoJson.addProperty("email", "sorghi@gmail.com");
+        contenutoJson.addProperty("anno", 3);
+        contenutoJson.addProperty("indirizzo", "informatico");
+        contenutoJson.addProperty("foto", "1110001100101001");
+        contenutoJson.addProperty("quartiere", "Navile");
 
-        responseJson.add("contenuto", "contenutoJson");
+        responseJson.add("contenuto", contenutoJson);
 
         // Invio il risultato al client
         PrintWriter printWriter = response.getWriter();
         printWriter.println(responseJson.toString());
         printWriter.flush();
-
     }
 
     // PRESA DA INTERNET, SI OCCUPA DI FARE IL BODY DELLA RICHIESTA
