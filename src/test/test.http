@@ -1,3 +1,4 @@
+# RIFERIMENTO PROTOCOLLO V_1.1
 # INDIRIZZO REMOTO: http://13.42.233.112:8080/skillbuilders_1.0/
 # INDIRIZZO LOCALE: http://localhost:8080/SkillBuilders_war_exploded/
 
@@ -12,7 +13,8 @@ Content-Type: application/json
   "anno": 3,
   "indirizzo": "informatico",
   "sezione": "B",
-  "quartiere": "Navile"
+  "quartiere": "Navile",
+  "flagTutor": false
 }
 
 ### Accesso

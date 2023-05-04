@@ -20,13 +20,14 @@ public class ServletRegistrazione extends HttpServlet {
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			String nome = temp.get("nome").toString(); // TROVO IL NOME
-			String password = temp.get("password").toString(); // TROVO LA PASSWORD
-			String email = temp.get("email").toString(); // TROVO LA MAIL
-			String anno = temp.get("anno").toString(); // TROVO IL NOME
-			String indirizzo = temp.get("indirizzo").toString(); // TROVO L'INDIRIZZO
-			String sezione = temp.get("sezione").toString(); // TROVO LA SEZIONE
-			String quartiere = temp.get("quartiere").toString(); // TROVO LA POSIZIONE
+			String nome = temp.get("nome").getAsString(); // TROVO IL NOME
+			String password = temp.get("password").getAsString(); // TROVO LA PASSWORD
+			String email = temp.get("email").getAsString(); // TROVO LA MAIL
+			String anno = temp.get("anno").getAsString(); // TROVO IL NOME
+			String indirizzo = temp.get("indirizzo").getAsString(); // TROVO L'INDIRIZZO
+			String sezione = temp.get("sezione").getAsString(); // TROVO LA SEZIONE
+			String quartiere = temp.get("quartiere").getAsString(); // TROVO LA POSIZIONE
+			boolean flagTutor = temp.get("flagTutor").getAsBoolean();
 			// TODO
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "registrazione avvenuta");

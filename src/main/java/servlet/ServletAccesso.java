@@ -20,8 +20,8 @@ public class ServletAccesso extends HttpServlet {
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			String nome = jsBody.get("email").toString(); // TROVO IL NOME (email)
-			String password = jsBody.get("password").toString(); // TROVO IL NOME (email)
+			String nome = jsBody.get("email").getAsString(); // TROVO IL NOME (email)
+			String password = jsBody.get("password").getAsString(); // TROVO IL NOME (email)
 			// TODO
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "accesso avvenuto");
