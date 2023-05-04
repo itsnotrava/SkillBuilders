@@ -20,22 +20,28 @@ public class ServletVisualizzaTutor extends HttpServlet {
 
         String body = getBody(request);
         // CREDO UN JSON PER IL RISULTATO
-        JsonObject temp = new Gson().fromJson(body, JsonObject.class);
+        JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);
         // fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
-        //String nome = temp.get("email").toString(); // TROVO IL NOME (email)
-        //String password = temp.get("password").toString(); // TROVO IL NOME (email)
         JsonObject responseJson = new JsonObject();
-        responseJson.addProperty("risultato", "sucesso!");
-        JsonObject contenutoJson = new JsonObject();
-        // CREO L'ARRAY CON LE EMAIL DEI TUTOR
-        JsonArray vet = new JsonArray();
-        vet.add("sorghi@gmail.com");
-        vet.add("giorgio@gmail.com");
-        contenutoJson.add("emails", vet);
-
-        // AGGIUNGO CONTENUTO A RISPOSTA.CONTENUTO
-        responseJson.add("contenuto", contenutoJson);
+        try {
+            int anno = jsBody.get("anno").getAsInt();
+            String provincia = jsBody.get("provincia").getAsString();
+            String indirizzo = jsBody.get("indirizzo").getAsString();
+            // TODO
+            responseJson.addProperty("risultato", "sucesso!");
+            JsonObject contenutoJson = new JsonObject();
+            // CREO L'ARRAY CON LE EMAIL DEI TUTOR
+            JsonArray vet = new JsonArray();
+            vet.add("sorghi@gmail.com");
+            vet.add("giorgio@gmail.com");
+            contenutoJson.add("emails", vet);
+            // AGGIUNGO CONTENUTO A RISPOSTA.CONTENUTO
+            responseJson.add("contenuto", contenutoJson);
+        } catch (NullPointerException e) {
+            responseJson.addProperty("risultato", "boia errore!");
+            responseJson.addProperty("contenuto", "forma del body scorretta");
+        }
 
         // Invio il risultato al client
         PrintWriter printWriter = response.getWriter();
