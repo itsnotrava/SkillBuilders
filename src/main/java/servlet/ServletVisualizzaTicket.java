@@ -7,8 +7,8 @@ import com.google.gson.JsonObject;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "VisualizzaTiket", value = "/VisualizzaTiket")
-public class ServletVisualizzaTiket extends HttpServlet {
+@WebServlet(name = "VisualizzaTicket", value = "/VisualizzaTicket")
+public class ServletVisualizzaTicket extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
@@ -22,15 +22,14 @@ public class ServletVisualizzaTiket extends HttpServlet {
         //String password = temp.get("password").toString(); // TROVO IL NOME (email)
         JsonObject responseJson = new JsonObject();
         responseJson.addProperty("risultato", "sucesso!");
-        JsonObject contenutoJson = new JsonObject;
-        contenutoJson.addProperty (““testo”, “blabla”);
-        contenutoJson.addProperty (“emailCliente”, “sorghi@gmail.com”);
-        contenutoJson.addProperty (“materia”, “informatica”);
-        contenutoJson.addProperty (“anno”, “3”);
-        contenutoJson.addProperty (“provincia”, “paese delle meraviglie”);
+        JsonObject contenutoJson = new JsonObject();
+        contenutoJson.addProperty ("testo", "blabla");
+        contenutoJson.addProperty ("emailCliente", "sorghi@gmail.com");
+        contenutoJson.addProperty ("materia", "informatica");
+        contenutoJson.addProperty ("anno", 3);
+        contenutoJson.addProperty ("provincia", "paese delle meraviglie");
 
-
-        responseJson.add("contenuto", "contenutoJson");
+        responseJson.add("contenuto", contenutoJson);
 
         // Invio il risultato al client
         PrintWriter printWriter = response.getWriter();
