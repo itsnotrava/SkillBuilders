@@ -49,3 +49,12 @@ Content-Type: application/json
   "provincia": "bolognetta",
   "materia": "informatica"
 }
+
+### Cambia flag
+POST http://localhost:8080/SkillBuilders_war_exploded/cambiaFlag
+Content-Type: application/json
+
+{
+  "email": "sorghi@gmail.com",
+  "flagTutor": true
+}
