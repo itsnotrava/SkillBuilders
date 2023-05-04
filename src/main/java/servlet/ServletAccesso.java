@@ -22,7 +22,7 @@ public class ServletAccesso extends HttpServlet {
 		try {
 			String nome = jsBody.get("email").toString(); // TROVO IL NOME (email)
 			String password = jsBody.get("password").toString(); // TROVO IL NOME (email)
-			// TODO: implementare accesso effettivo
+			// TODO
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "accesso avvenuto");
 		} catch (NullPointerException e) {

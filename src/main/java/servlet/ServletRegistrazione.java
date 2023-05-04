@@ -27,7 +27,7 @@ public class ServletRegistrazione extends HttpServlet {
 			String indirizzo = temp.get("indirizzo").toString(); // TROVO L'INDIRIZZO
 			String sezione = temp.get("sezione").toString(); // TROVO LA SEZIONE
 			String quartiere = temp.get("quartiere").toString(); // TROVO LA POSIZIONE
-			// TODO: implementare registrazione effettiva
+			// TODO
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "registrazione avvenuta");
 		} catch (NullPointerException e) {

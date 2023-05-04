@@ -15,25 +15,28 @@ public class ServletCambiaFlag extends HttpServlet {
 
         String body = getBody(request);
         // CREDO UN JSON PER IL RISULTATO
-        JsonObject temp = new Gson().fromJson(body, JsonObject.class);
+        JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);
         // fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
-        //String nome = temp.get("email").toString(); // TROVO IL NOME (email)
-        //String password = temp.get("password").toString(); // TROVO IL NOME (email)
         JsonObject responseJson = new JsonObject();
-        responseJson.addProperty("risultato", "sucesso!");
-        JsonObject contenutoJson = new JsonObject;
-        contenutoJson.addProperty ("email" , "sorghi@gmail.com");
-        contenutoJson.addProperty ("flagTutor", true);
-
-
-        responseJson.addProperty("contenuto", "contenutoJson");
+        try {
+            String email = jsBody.get("email").getAsString();
+            boolean flagTutor = jsBody.get("flagTutor").getAsBoolean();
+            // TODO
+            responseJson.addProperty("risultato", "sucesso!");
+            JsonObject contenutoJson = new JsonObject();
+            contenutoJson.addProperty("email", "sorghi@gmail.com");
+            contenutoJson.addProperty("flagTutor", true);
+            responseJson.add("contenuto", contenutoJson);
+        } catch (NullPointerException e) {
+            responseJson.addProperty("risultato", "boia errore!");
+            responseJson.addProperty("contenuto", "forma del body scorretta");
+        }
 
         // Invio il risultato al client
         PrintWriter printWriter = response.getWriter();
         printWriter.println(responseJson.toString());
         printWriter.flush();
-
     }
 
     // PRESA DA INTERNET, SI OCCUPA DI FARE IL BODY DELLA RICHIESTA
