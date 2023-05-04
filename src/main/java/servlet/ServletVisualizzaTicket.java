@@ -22,7 +22,7 @@ public class ServletVisualizzaTicket extends HttpServlet {
         try {
             int anno = jsBody.get("anno").getAsInt();
             String provincia = jsBody.get("provincia").getAsString();
-            String materia = jsBody.get("informatica").getAsString();
+            String materia = jsBody.get("materia").getAsString();
             // TODO
             responseJson.addProperty("risultato", "sucesso!");
             JsonObject contenutoJson = new JsonObject();
@@ -34,7 +34,7 @@ public class ServletVisualizzaTicket extends HttpServlet {
             responseJson.add("contenuto", contenutoJson);
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
-            responseJson.addProperty("contenuto", "forma del body scorretta");
+            responseJson.addProperty("contenuto", "formato del body scorretto");
         }
         // Invio il risultato al client
         PrintWriter printWriter = response.getWriter();

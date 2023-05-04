@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "CambiaFlag", value = "/CambiaFlag")
+@WebServlet(name = "CambiaFlag", value = "/cambiaFlag")
 public class ServletCambiaFlag extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -30,7 +30,7 @@ public class ServletCambiaFlag extends HttpServlet {
             responseJson.add("contenuto", contenutoJson);
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
-            responseJson.addProperty("contenuto", "forma del body scorretta");
+            responseJson.addProperty("contenuto", "formato del body scorretto");
         }
 
         // Invio il risultato al client

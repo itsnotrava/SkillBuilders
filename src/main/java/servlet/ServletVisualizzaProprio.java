@@ -34,7 +34,7 @@ public class ServletVisualizzaProprio extends HttpServlet {
             responseJson.add("contenuto", contenutoJson);
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
-            responseJson.addProperty("contenuto", "forma del body scorretto");
+            responseJson.addProperty("contenuto", "formato del body scorretto");
         }
 
         // Invio il risultato al client
