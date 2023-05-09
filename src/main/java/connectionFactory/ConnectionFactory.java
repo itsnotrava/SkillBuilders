@@ -21,12 +21,14 @@ public class ConnectionFactory {
 		switch (tipoDatabase) {
 			case "sqlite" -> {
 				SQLiteDataSource dataSource = new SQLiteDataSource();
-				dataSource.setUrl("jdbc:sqlite:C:\\Users\\eliam\\IdeaProjects\\ARPA\\ARPA.sqlite");
+				dataSource.setUrl("jdbc:sqlite:");
 				return dataSource.getConnection();
 			}
 			case "mysql" -> { // PER COGLIONI
 				MysqlDataSource dataSource = new MysqlDataSource();
-				dataSource.setUrl("jdbc:mysql://localhost/ARPA?user=root");
+				dataSource.setUrl("jdbc:mysql://13.42.233.112:3306/SkillBuilders");
+				dataSource.setUser("root");
+				dataSource.setPassword("Skillbuilders23!");
 				return dataSource.getConnection();
 			}
 			default -> {
