@@ -1,4 +1,4 @@
-package connectionFactory;
+package factory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ import org.sqlite.SQLiteDataSource;
  */
 public class ConnectionFactory {
 
-	public Connection createConnection(String tipoDatabase) throws SQLException {
+	public static Connection createConnection(String tipoDatabase) throws SQLException {
 		switch (tipoDatabase) {
 			case "sqlite" -> {
 				SQLiteDataSource dataSource = new SQLiteDataSource();
