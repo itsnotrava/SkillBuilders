@@ -6,41 +6,33 @@ import java.sql.SQLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
-import exceptions.UtenteGiàEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "registrazione", value = "/registrazione")
-public class ServletRegistrazione extends HttpServlet {
+@WebServlet(name = "cambiaPassword", value = "/cambiaPassword")
+public class ServletCambiaPassword extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
 		String body = getBody(request);
-		JsonObject temp = new Gson().fromJson(body, JsonObject.class);
+		JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			String nome = temp.get("nome").getAsString();
-			String password = temp.get("password").getAsString();
-			String email = temp.get("email").getAsString();
-			String anno = temp.get("anno").getAsString();
-			String indirizzo = temp.get("indirizzo").getAsString();
-			String foto = temp.get("foto").getAsString();
-			String comune = temp.get("comune").getAsString();
-			boolean flagTutor = temp.get("flagTutor").getAsBoolean();
+			HttpSession session = request.getSession();
+			String email = (String) session.getAttribute("email");
+
+			String password = jsBody.get("password").getAsString();
 
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.insertUtente(nome, password, email, anno, indirizzo, foto, comune, flagTutor);
+			skillBuildersDao.updatePassword(email, password);
 
 			responseJson.addProperty("risultato", "sucesso!");
-			responseJson.addProperty("contenuto", "registrazione avvenuta");
+			responseJson.addProperty("contenuto", "password sostituita");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
-		} catch (UtenteGiàEsistente e) {
-			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "utente già esistente");
 		} catch (SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "Java Exception");
@@ -51,7 +43,7 @@ public class ServletRegistrazione extends HttpServlet {
 		printWriter.flush();
 	}
 
-	private static String getBody(HttpServletRequest request) throws IOException {
+	public static String getBody(HttpServletRequest request) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader reader = request.getReader();
 		String line;
@@ -60,4 +52,5 @@ public class ServletRegistrazione extends HttpServlet {
 		}
 		return sb.toString();
 	}
+
 }

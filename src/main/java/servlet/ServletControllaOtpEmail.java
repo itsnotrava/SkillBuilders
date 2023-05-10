@@ -1,17 +1,14 @@
 package servlet;
 
 import java.io.*;
-import java.sql.SQLException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import dao.SkillBuildersDao;
-import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "accesso", value = "/accesso")
-public class ServletAccesso extends HttpServlet {
+@WebServlet(name = "controllaOtpEmail", value = "/controllaOtpEmail")
+public class ServletControllaOtpEmail extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.addHeader("Access-Control-Allow-Origin", "*");
@@ -21,26 +18,20 @@ public class ServletAccesso extends HttpServlet {
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			String email = jsBody.get("email").getAsString();
-			String password = jsBody.get("password").getAsString();
-
-			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.checkUtente();
-
 			HttpSession session = request.getSession();
-			session.setAttribute("email", email);
+			String otpServer = (String) session.getAttribute("otp");
+			String otpClient = jsBody.get("otp").getAsString();
 
-			responseJson.addProperty("risultato", "sucesso!");
-			responseJson.addProperty("contenuto", "accesso avvenuto");
+			if (otpServer.equals(otpClient)) {
+				responseJson.addProperty("risultato", "sucesso!");
+				responseJson.addProperty("contenuto", "otp corretto");
+			} else {
+				responseJson.addProperty("risultato", "boia errore!");
+				responseJson.addProperty("contenuto", "otp errato");
+			}
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
-		} catch (UtenteNonEsistente e) {
-			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "email o password non trovati");
-		} catch (SQLException e) {
-			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "Java Exception");
 		}
 
 		PrintWriter printWriter = response.getWriter();

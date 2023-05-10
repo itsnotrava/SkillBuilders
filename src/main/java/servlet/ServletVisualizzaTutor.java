@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +26,9 @@ public class ServletVisualizzaTutor extends HttpServlet {
 
         JsonObject responseJson = new JsonObject();
         try {
+            HttpSession session = request.getSession();
+
+            String email = (String) session.getAttribute("email");
             int anno = jsBody.get("anno").getAsInt();
             String provincia = jsBody.get("provincia").getAsString();
             String indirizzo = jsBody.get("indirizzo").getAsString();
