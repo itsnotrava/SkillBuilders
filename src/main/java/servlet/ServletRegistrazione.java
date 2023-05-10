@@ -21,13 +21,13 @@ public class ServletRegistrazione extends HttpServlet {
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			String nome = temp.get("nome").getAsString(); // TROVO IL NOME
-			String password = temp.get("password").getAsString(); // TROVO LA PASSWORD
-			String email = temp.get("email").getAsString(); // TROVO LA MAIL
-			String anno = temp.get("anno").getAsString(); // TROVO IL NOME
-			String indirizzo = temp.get("indirizzo").getAsString(); // TROVO L'INDIRIZZO
-			String foto = temp.get("foto").getAsString(); // TROVO LA SEZIONE
-			String comune = temp.get("comune").getAsString(); // TROVO LA POSIZIONE
+			String nome = temp.get("nome").getAsString();
+			String password = temp.get("password").getAsString();
+			String email = temp.get("email").getAsString();
+			String anno = temp.get("anno").getAsString();
+			String indirizzo = temp.get("indirizzo").getAsString();
+			String foto = temp.get("foto").getAsString();
+			String comune = temp.get("comune").getAsString();
 			boolean flagTutor = temp.get("flagTutor").getAsBoolean();
 
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();

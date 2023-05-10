@@ -20,7 +20,9 @@ public class ServletVisualizzaAltrui extends HttpServlet {
 
         JsonObject responseJson = new JsonObject();
         try {
-            String email = jsBody.get("email").getAsString();
+            HttpSession session = request.getSession();
+
+            String email = (String) session.getAttribute("email");
             // TODO
             responseJson.addProperty("risultato", "sucesso!");
             JsonObject contenutoJson = new JsonObject();

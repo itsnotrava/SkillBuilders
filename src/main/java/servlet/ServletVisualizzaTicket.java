@@ -20,6 +20,9 @@ public class ServletVisualizzaTicket extends HttpServlet {
 
         JsonObject responseJson = new JsonObject();
         try {
+            HttpSession session = request.getSession();
+
+            String email = (String) session.getAttribute("email");
             int anno = jsBody.get("anno").getAsInt();
             String provincia = jsBody.get("provincia").getAsString();
             String materia = jsBody.get("materia").getAsString();

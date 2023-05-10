@@ -17,17 +17,18 @@ public class ServletAccesso extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
 		String body = getBody(request);
-		// CREDO UN JSON PER IL RISULTATO
 		JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);
-		// fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			String nome = jsBody.get("email").getAsString(); // TROVO IL NOME (email)
-			String password = jsBody.get("password").getAsString(); // TROVO IL NOME (email)
+			String email = jsBody.get("email").getAsString();
+			String password = jsBody.get("password").getAsString();
 
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
 			skillBuildersDao.checkUtente();
+
+			HttpSession session = request.getSession();
+			session.setAttribute("email", email);
 
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "accesso avvenuto");
@@ -42,13 +43,11 @@ public class ServletAccesso extends HttpServlet {
 			responseJson.addProperty("contenuto", "Java Exception");
 		}
 
-		// Invio il risultato al client
 		PrintWriter printWriter = response.getWriter();
 		printWriter.println(responseJson.toString());
 		printWriter.flush();
 	}
 
-	// PRESA DA INTERNET, SI OCCUPA DI FARE IL BODY DELLA RICHIESTAA
 	public static String getBody(HttpServletRequest request) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader reader = request.getReader();

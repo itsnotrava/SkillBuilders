@@ -14,13 +14,13 @@ public class ServletCambiaFlag extends HttpServlet {
         response.addHeader("Access-Control-Allow-Origin", "*");
 
         String body = getBody(request);
-        // CREDO UN JSON PER IL RISULTATO
         JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);
-        // fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
         JsonObject responseJson = new JsonObject();
         try {
-            String email = jsBody.get("email").getAsString();
+            HttpSession session = request.getSession();
+
+            String email = (String) session.getAttribute("email");
             boolean flagTutor = jsBody.get("flagTutor").getAsBoolean();
             // TODO
             responseJson.addProperty("risultato", "sucesso!");
@@ -33,13 +33,11 @@ public class ServletCambiaFlag extends HttpServlet {
             responseJson.addProperty("contenuto", "formato del body scorretto");
         }
 
-        // Invio il risultato al client
         PrintWriter printWriter = response.getWriter();
         printWriter.println(responseJson.toString());
         printWriter.flush();
     }
 
-    // PRESA DA INTERNET, SI OCCUPA DI FARE IL BODY DELLA RICHIESTA
     public static String getBody(HttpServletRequest request) throws IOException {
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = request.getReader();
