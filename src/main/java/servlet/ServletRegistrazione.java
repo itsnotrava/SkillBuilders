@@ -1,9 +1,12 @@
 package servlet;
 
 import java.io.*;
+import java.sql.SQLException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dao.SkillBuildersDao;
+import exceptions.UtenteGiàEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -14,9 +17,7 @@ public class ServletRegistrazione extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
 		String body = getBody(request);
-		// CREDO UN JSON PER IL RISULTATO
 		JsonObject temp = new Gson().fromJson(body, JsonObject.class);
-		// fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
 		JsonObject responseJson = new JsonObject();
 		try {
@@ -25,18 +26,26 @@ public class ServletRegistrazione extends HttpServlet {
 			String email = temp.get("email").getAsString(); // TROVO LA MAIL
 			String anno = temp.get("anno").getAsString(); // TROVO IL NOME
 			String indirizzo = temp.get("indirizzo").getAsString(); // TROVO L'INDIRIZZO
-			String sezione = temp.get("sezione").getAsString(); // TROVO LA SEZIONE
-			String quartiere = temp.get("quartiere").getAsString(); // TROVO LA POSIZIONE
+			String foto = temp.get("foto").getAsString(); // TROVO LA SEZIONE
+			String comune = temp.get("comune").getAsString(); // TROVO LA POSIZIONE
 			boolean flagTutor = temp.get("flagTutor").getAsBoolean();
-			// TODO
+
+			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
+			skillBuildersDao.insertUtente(nome, password, email, anno, indirizzo, foto, comune, flagTutor);
+
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "registrazione avvenuta");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
+		} catch (UtenteGiàEsistente e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "utente già esistente");
+		} catch (SQLException e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "Java Exception");
 		}
 
-		// Invio il risultato al client
 		PrintWriter printWriter = response.getWriter();
 		printWriter.println(responseJson.toString());
 		printWriter.flush();

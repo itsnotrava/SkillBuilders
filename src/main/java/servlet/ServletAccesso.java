@@ -1,9 +1,12 @@
 package servlet;
 
 import java.io.*;
+import java.sql.SQLException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dao.SkillBuildersDao;
+import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -22,12 +25,21 @@ public class ServletAccesso extends HttpServlet {
 		try {
 			String nome = jsBody.get("email").getAsString(); // TROVO IL NOME (email)
 			String password = jsBody.get("password").getAsString(); // TROVO IL NOME (email)
-			// TODO
+
+			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
+			skillBuildersDao.checkUtente();
+
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "accesso avvenuto");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
+		} catch (UtenteNonEsistente e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "email o password non trovati");
+		} catch (SQLException e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "Java Exception");
 		}
 
 		// Invio il risultato al client
