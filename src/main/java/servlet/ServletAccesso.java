@@ -25,7 +25,7 @@ public class ServletAccesso extends HttpServlet {
 			String password = jsBody.get("password").getAsString();
 
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.checkUtente();
+			skillBuildersDao.checkUtente(email);
 
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);

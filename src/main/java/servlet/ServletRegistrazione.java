@@ -24,7 +24,7 @@ public class ServletRegistrazione extends HttpServlet {
 			String nome = temp.get("nome").getAsString();
 			String password = temp.get("password").getAsString();
 			String email = temp.get("email").getAsString();
-			String anno = temp.get("anno").getAsString();
+			int anno = temp.get("anno").getAsInt();
 			String indirizzo = temp.get("indirizzo").getAsString();
 			String foto = temp.get("foto").getAsString();
 			String comune = temp.get("comune").getAsString();

@@ -1,7 +1,7 @@
 package dao;
 
-import exception.UtenteNonEsistente;
-import exception.UtenteGiaEsistente;
+import exceptions.UtenteNonEsistente;
+import exceptions.UtenteGiàEsistente;
 import factory.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ public class SkillBuildersDao {
 	}
 
 	// INSERISCO UN NUOVO UTENTE
-	public void insertUtente(String nome, String password, String email, int anno, String foto, String indirizzo, String comune, boolean flagTutor) throws SQLException, UtenteGiaEsistente {
+	public void insertUtente(String nome, String password, String email, int anno, String foto, String indirizzo, String comune, boolean flagTutor) throws SQLException, UtenteGiàEsistente {
 		// CONTROLLO CHE LA EMAIL NON ESISTA GIA
 		/*
 		if(checkUtente(email)){
@@ -27,7 +27,7 @@ public class SkillBuildersDao {
 
 		try{
 			checkUtente(email);
-			throw new UtenteGiaEsistente(); // UTENTE ESISTE
+			throw new UtenteGiàEsistente(); // UTENTE ESISTE
 		} catch (UtenteNonEsistente e) { // NON CONTIENE NULLA, QUINDI VA BENE
 			String sql = "INSERT INTO Utenti (email, nome, password, anno, indirizzo, foto, comune, flagTutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStatement = this.con.prepareStatement(sql);
