@@ -4,11 +4,14 @@ import java.io.*;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.EmailSender;
+import model.OTPGenerator;
 
-@WebServlet(name = "controllaOtpEmail", value = "/controllaOtpEmail")
-public class ServletControllaOtpEmail extends HttpServlet {
+@WebServlet(name = "verificaEmail", value = "/verificaEmail")
+public class ServletVerificaEmail extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.addHeader("Access-Control-Allow-Origin", "*");
@@ -18,21 +21,27 @@ public class ServletControllaOtpEmail extends HttpServlet {
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			HttpSession session = request.getSession();
-			int otpServer = (int) session.getAttribute("otp");
-			int otpClient = jsBody.get("otp").getAsInt();
+			String email = jsBody.get("email").getAsString();
 
-			if (otpServer == otpClient) {
-				responseJson.addProperty("risultato", "sucesso!");
-				responseJson.addProperty("contenuto", "otp corretto");
-			} else {
-				responseJson.addProperty("risultato", "boia errore!");
-				responseJson.addProperty("contenuto", "otp errato");
-				session.invalidate();
-			}
+			// Genera OTP
+			int otp = OTPGenerator.generateOTP();
+
+			// Invia OTP per mail
+			EmailSender sender = new EmailSender(email, otp);
+			sender.send();
+
+			HttpSession session = request.getSession();
+			session.setAttribute("email", email);
+			session.setAttribute("otp", otp);
+
+			responseJson.addProperty("risultato", "successo");
+			responseJson.addProperty("contenuto", "email inviata");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
+		} catch (MessagingException e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "Java Exception");
 		}
 
 		PrintWriter printWriter = response.getWriter();

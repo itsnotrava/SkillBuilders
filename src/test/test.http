@@ -1,9 +1,40 @@
 # RIFERIMENTO PROTOCOLLO V_1.1
 # INDIRIZZO REMOTO: http://13.42.233.112:8080/skillbuilders_1.0/
-# INDIRIZZO LOCALE: http://localhost:8080/SkillBuilders_war_exploded/
+# INDIRIZZO LOCALE: http://localhost:8080/SkillBuilders_war/
+
+### Verifica email
+POST http://localhost:8080/SkillBuilders_war/verificaEmail
+Content-Type: application/json
+
+{
+  "email": "nicola1.travaglini@gmail.com"
+}
+
+### Controlla Otp email
+POST http://localhost:8080/SkillBuilders_war/controllaOtpEmail
+Content-Type: application/json
+
+{
+  "otp": 68903
+}
 
 ### Registrazione
 POST http://localhost:8080/SkillBuilders_war/registrazione
+Content-Type: application/json
+
+{
+  "nome": "Nicola",
+  "password": "ciao",
+  "email": "nicola1.travaglini@gmail.com",
+  "anno": 3,
+  "indirizzo": "informatico",
+  "foto": "ciao.jpg",
+  "comune": "Navile",
+  "flagTutor": true
+}
+
+### Registrazione
+POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
 Content-Type: application/json
 
 {
@@ -18,7 +49,7 @@ Content-Type: application/json
 }
 
 ### Accesso
-POST http://localhost:8080/SkillBuilders_war/accesso
+POST http://13.42.233.112:8080/skillbuilders_1.0/accesso
 Content-Type: application/json
 
 {
@@ -31,7 +62,6 @@ POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaProprio
 Content-Type: application/json
 
 {
-  "email": "sorghi@gmail.com"
 }
 
 ### Visualizza altrui
@@ -39,7 +69,6 @@ POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaAltrui
 Content-Type: application/json
 
 {
-  "email": "sorghi@gmail.com"
 }
 
 ### Visualizza ticket
@@ -57,7 +86,6 @@ POST http://13.42.233.112:8080/skillbuilders_1.0/cambiaFlag
 Content-Type: application/json
 
 {
-  "email": "sorghi@gmail.com",
   "flagTutor": true
 }
 
