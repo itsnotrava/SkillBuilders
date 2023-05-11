@@ -3,7 +3,7 @@
 # INDIRIZZO LOCALE: http://localhost:8080/SkillBuilders_war_exploded/
 
 ### Registrazione
-POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
+POST http://localhost:8080/SkillBuilders_war/registrazione
 Content-Type: application/json
 
 {
@@ -12,18 +12,18 @@ Content-Type: application/json
   "email": "sorghi@gmail.com",
   "anno": 3,
   "indirizzo": "informatico",
-  "sezione": "B",
-  "quartiere": "Navile",
+  "foto": "ciao.jpg",
+  "comune": "Navile",
   "flagTutor": false
 }
 
 ### Accesso
-POST http://13.42.233.112:8080/skillbuilders_1.0/accesso
+POST http://localhost:8080/SkillBuilders_war/accesso
 Content-Type: application/json
 
 {
   "email": "sorghi@gmail.com",
-  "password": "ciao"
+  "password": "specifichebrutte"
 }
 
 ### Visualizza proprio

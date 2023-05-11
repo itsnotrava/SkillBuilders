@@ -25,6 +25,7 @@ public class ServletEmailCambioPassword extends HttpServlet {
 
 			// TODO: mettere OTP in sessione
 			// TODO: inviare email con OTP
+			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
 
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "email inviata");

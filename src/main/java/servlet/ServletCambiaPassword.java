@@ -26,7 +26,7 @@ public class ServletCambiaPassword extends HttpServlet {
 			String password = jsBody.get("password").getAsString();
 
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.updatePassword(email, password);
+			// skillBuildersDao.updatePassword(email, password);
 
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "password sostituita");

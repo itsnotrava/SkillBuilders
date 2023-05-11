@@ -2,6 +2,7 @@ package dao;
 
 import exceptions.UtenteNonEsistente;
 import exceptions.UtenteGiàEsistente;
+import exceptions.EmailOPasswordErrati;
 import factory.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,20 +17,12 @@ public class SkillBuildersDao {
 		this.con = ConnectionFactory.createConnection("mysql");
 	}
 
-	// INSERISCO UN NUOVO UTENTE
 	public void insertUtente(String nome, String password, String email, int anno, String foto, String indirizzo, String comune, boolean flagTutor) throws SQLException, UtenteGiàEsistente {
-		// CONTROLLO CHE LA EMAIL NON ESISTA GIA
-		/*
-		if(checkUtente(email)){
-			throw new UtenteGiaEsistente();
-		}
-		*/
-
 		try{
 			checkUtente(email);
-			throw new UtenteGiàEsistente(); // UTENTE ESISTE
-		} catch (UtenteNonEsistente e) { // NON CONTIENE NULLA, QUINDI VA BENE
-			String sql = "INSERT INTO Utenti (email, nome, password, anno, indirizzo, foto, comune, flagTutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			throw new UtenteGiàEsistente();
+		} catch (UtenteNonEsistente e) {
+			String sql = "INSERT INTO utente (email, nome, password, anno, indirizzo, nome_foto, comune, flag_tutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 			preparedStatement.setString(1, email);
 			preparedStatement.setString(2, nome);
@@ -44,15 +37,26 @@ public class SkillBuildersDao {
 		}
 	}
 
-	// CONTROLLO SE UN UTENTE ESISTE
 	public void checkUtente(String email) throws SQLException, UtenteNonEsistente {
 		String sql = "SELECT * FROM utente WHERE email=?";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setString(1, email);
 
 		ResultSet resultSet = preparedStatement.executeQuery();
-		if(resultSet.isClosed()) { // SE NON CONTIENE NULLA
+		if(!resultSet.next()) {
 			throw new UtenteNonEsistente();
+		}
+	}
+
+	public void checkUtenteConPassword(String email, String password) throws SQLException, EmailOPasswordErrati {
+		String sql = "SELECT * FROM utente WHERE email=? AND password=?";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setString(1, email);
+		preparedStatement.setString(2, password);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if(!resultSet.next()) {
+			throw new EmailOPasswordErrati();
 		}
 	}
 
