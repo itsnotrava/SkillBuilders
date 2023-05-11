@@ -32,7 +32,10 @@ public class ServletVerificaEmail extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);
+			session.setAttribute("otp", otp);
 
+			responseJson.addProperty("risultato", "successo");
+			responseJson.addProperty("contenuto", "email inviata");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");

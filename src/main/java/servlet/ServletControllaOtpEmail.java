@@ -19,15 +19,16 @@ public class ServletControllaOtpEmail extends HttpServlet {
 		JsonObject responseJson = new JsonObject();
 		try {
 			HttpSession session = request.getSession();
-			String otpServer = (String) session.getAttribute("otp");
-			String otpClient = jsBody.get("otp").getAsString();
+			int otpServer = (int) session.getAttribute("otp");
+			int otpClient = jsBody.get("otp").getAsInt();
 
-			if (otpServer.equals(otpClient)) {
+			if (otpServer == otpClient) {
 				responseJson.addProperty("risultato", "sucesso!");
 				responseJson.addProperty("contenuto", "otp corretto");
 			} else {
 				responseJson.addProperty("risultato", "boia errore!");
 				responseJson.addProperty("contenuto", "otp errato");
+				session.invalidate();
 			}
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");

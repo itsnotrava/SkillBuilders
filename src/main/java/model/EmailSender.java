@@ -9,8 +9,8 @@ import jakarta.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailSender {
-	private final String emailFrom = "skillbuilders05@gmail.com";
-	private final String passwordFrom = "ProgettoAd";
+	private final String emailFrom = "nicola1.travaglini@gmail.com";
+	private final String passwordFrom = "xtkicxlycjaprlpm";
 	private final String providerFrom = "smtp.gmail.com";
 	private String emailTo;
 	private int otp;
@@ -23,13 +23,14 @@ public class EmailSender {
 	public void send() throws MessagingException {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", this.providerFrom);
-		Session session = Session.getInstance(props);
+		props.put("mail.smtp.starttls.enable", "true");
+		Session session = Session.getInstance(props, null);
 
 		MimeMessage msg = new MimeMessage(session);
 		msg.setFrom(emailFrom);
 		msg.setRecipients(Message.RecipientType.TO, emailTo);
 		msg.setSubject("OTP SkillBuilders");
 		msg.setText(Integer.toString(otp));
-		Transport.send(msg);
+		Transport.send(msg, emailFrom, passwordFrom);
 	}
 }
