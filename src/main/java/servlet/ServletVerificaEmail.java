@@ -1,9 +1,12 @@
 package servlet;
 
 import java.io.*;
+import java.sql.SQLException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dao.SkillBuildersDao;
+import exceptions.UtenteGiàEsistente;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -23,6 +26,10 @@ public class ServletVerificaEmail extends HttpServlet {
 		try {
 			String email = jsBody.get("email").getAsString();
 
+			// Verifico che l'utente non esisti già
+			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
+			skillBuildersDao.checkUtenteNonEsistente(email);
+
 			// Genera OTP
 			int otp = OTPGenerator.generateOTP();
 
@@ -39,7 +46,10 @@ public class ServletVerificaEmail extends HttpServlet {
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
-		} catch (MessagingException e) {
+		} catch (UtenteGiàEsistente e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "utente già esistente");
+		} catch (MessagingException | SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "Java Exception");
 		}

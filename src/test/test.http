@@ -7,7 +7,7 @@ POST http://localhost:8080/SkillBuilders_war/verificaEmail
 Content-Type: application/json
 
 {
-  "email": "nicola1.travaglini@gmail.com"
+  "email": "nicola.travaglini@aldini.istruzioneer.it"
 }
 
 ### Controlla Otp email
@@ -15,7 +15,7 @@ POST http://localhost:8080/SkillBuilders_war/controllaOtpEmail
 Content-Type: application/json
 
 {
-  "otp": 68903
+  "otp": 84855
 }
 
 ### Registrazione
@@ -23,10 +23,10 @@ POST http://localhost:8080/SkillBuilders_war/registrazione
 Content-Type: application/json
 
 {
-  "nome": "Nicola",
+  "nome": "itsnotrava",
   "password": "ciao",
-  "email": "nicola1.travaglini@gmail.com",
-  "anno": 3,
+  "email": "nicola.travaglini@aldini.istruzioneer.it",
+  "anno": 5,
   "indirizzo": "informatico",
   "foto": "ciao.jpg",
   "comune": "Navile",

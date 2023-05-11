@@ -18,8 +18,12 @@ public class SkillBuildersDao {
 	}
 
 	public void insertUtente(String nome, String password, String email, int anno, String foto, String indirizzo, String comune, boolean flagTutor) throws SQLException, UtenteGiàEsistente {
-		try{
-			checkUtente(email);
+		try {
+			/*
+		    * FIXME: funziona tutto, ma avendo introdotto la verifica della mail questo controllo viene fatto a priori
+		    *   da ServletVerificaEmail --> è ridondante il controllo;
+			*/
+			checkUtenteEsistente(email);
 			throw new UtenteGiàEsistente();
 		} catch (UtenteNonEsistente e) {
 			String sql = "INSERT INTO utente (email, nome, password, anno, indirizzo, nome_foto, comune, flag_tutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -37,7 +41,7 @@ public class SkillBuildersDao {
 		}
 	}
 
-	public void checkUtente(String email) throws SQLException, UtenteNonEsistente {
+	public void checkUtenteEsistente(String email) throws SQLException, UtenteNonEsistente {
 		String sql = "SELECT * FROM utente WHERE email=?";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setString(1, email);
@@ -45,6 +49,17 @@ public class SkillBuildersDao {
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if(!resultSet.next()) {
 			throw new UtenteNonEsistente();
+		}
+	}
+
+	public void checkUtenteNonEsistente(String email) throws SQLException, UtenteGiàEsistente {
+		String sql = "SELECT * FROM utente WHERE email=?";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setString(1, email);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if(resultSet.next()) {
+			throw new UtenteGiàEsistente();
 		}
 	}
 
