@@ -1,9 +1,9 @@
 # RIFERIMENTO PROTOCOLLO V_1.1
 # INDIRIZZO REMOTO: http://13.42.233.112:8080/skillbuilders_1.0/
-# INDIRIZZO LOCALE: http://localhost:8080/SkillBuilders_war_exploded/
+# INDIRIZZO LOCALE: http://localhost:8080/SkillBuilders_war/
 
 ### Registrazione
-POST http://localhost:8080/SkillBuilders_war/registrazione
+POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
 Content-Type: application/json
 
 {
@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ### Accesso
-POST http://localhost:8080/SkillBuilders_war/accesso
+POST http://13.42.233.112:8080/skillbuilders_1.0/accesso
 Content-Type: application/json
 
 {

@@ -1,0 +1,35 @@
+package model;
+
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.MimeMessage;
+
+import java.util.Properties;
+
+public class EmailSender {
+	private final String emailFrom = "skillbuilders05@gmail.com";
+	private final String passwordFrom = "ProgettoAd";
+	private final String providerFrom = "smtp.gmail.com";
+	private String emailTo;
+	private int otp;
+
+	public EmailSender(String emailTo, int otp) {
+		this.emailTo = emailTo;
+		this.otp = otp;
+	}
+
+	public void send() throws MessagingException {
+		Properties props = new Properties();
+		props.put("mail.smtp.host", this.providerFrom);
+		Session session = Session.getInstance(props);
+
+		MimeMessage msg = new MimeMessage(session);
+		msg.setFrom(emailFrom);
+		msg.setRecipients(Message.RecipientType.TO, emailTo);
+		msg.setSubject("OTP SkillBuilders");
+		msg.setText(Integer.toString(otp));
+		Transport.send(msg);
+	}
+}
