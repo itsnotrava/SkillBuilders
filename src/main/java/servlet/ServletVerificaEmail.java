@@ -51,7 +51,7 @@ public class ServletVerificaEmail extends HttpServlet {
 			responseJson.addProperty("contenuto", "utente già esistente");
 		} catch (MessagingException | SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "Java Exception");
+			responseJson.addProperty("contenuto", "Java Exception: " + e.toString());
 		}
 
 		PrintWriter printWriter = response.getWriter();
