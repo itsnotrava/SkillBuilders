@@ -2,30 +2,30 @@
 # INDIRIZZO REMOTO: http://13.42.233.112:8080/skillbuilders_1.0/
 # INDIRIZZO LOCALE: http://localhost:8080/SkillBuilders_war/
 
-### Verifica email
-POST http://localhost:8080/SkillBuilders_war/verificaEmail
+### Verifica email (NON FUNZIONANTE)
+POST http://13.42.233.112:8080/skillbuilders_1.0/verificaEmail
 Content-Type: application/json
 
 {
-  "email": "nicola.travaglini@aldini.istruzioneer.it"
+  "email": "nicola1.travaglini@gmail.com"
 }
 
-### Controlla Otp email
-POST http://localhost:8080/SkillBuilders_war/controllaOtpEmail
+### Controlla Otp email (NON FUNZIONANTE)
+POST http://13.42.233.112:8080/skillbuilders_1.0/controllaOtpEmail
 Content-Type: application/json
 
 {
-  "otp": 84855
+  "otp": 24869
 }
 
 ### Registrazione
-POST http://localhost:8080/SkillBuilders_war/registrazione
+POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
 Content-Type: application/json
 
 {
-  "nome": "itsnotrava",
+  "nome": "trava",
   "password": "ciao",
-  "email": "nicola.travaglini@aldini.istruzioneer.it",
+  "email": "nicola1.travaglini@gmail.com",
   "anno": 5,
   "indirizzo": "informatico",
   "foto": "ciao.jpg",

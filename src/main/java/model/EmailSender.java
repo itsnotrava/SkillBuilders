@@ -4,14 +4,17 @@ import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
 import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 public class EmailSender {
-	private final String emailFrom = "nicola1.travaglini@gmail.com";
-	private final String passwordFrom = "xtkicxlycjaprlpm";
-	private final String providerFrom = "smtp.gmail.com";
+	private final String emailFrom = "skillbuilders05@gmail.com";
+	private final String passwordFrom = "f1rIXO3ySQn8PWFh";
+	private final String providerFrom = "smtp-relay.sendinblue.com";
+	private final int port = 587;
 	private String emailTo;
 	private int otp;
 
@@ -20,14 +23,17 @@ public class EmailSender {
 		this.otp = otp;
 	}
 
-	public void send() throws MessagingException {
+	public void send() throws MessagingException, UnsupportedEncodingException {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", this.providerFrom);
 		props.put("mail.smtp.starttls.enable", "true");
-		Session session = Session.getInstance(props, null);
+		props.put("mail.smtp.port", this.port);
+		props.put("mail.smtp.auth", "true");
+
+		Session session = Session.getDefaultInstance(props);
 
 		MimeMessage msg = new MimeMessage(session);
-		msg.setFrom(emailFrom);
+		msg.setFrom(new InternetAddress(emailFrom, "Skillbuilders"));
 		msg.setRecipients(Message.RecipientType.TO, emailTo);
 		msg.setSubject("OTP SkillBuilders");
 		msg.setText(Integer.toString(otp));
