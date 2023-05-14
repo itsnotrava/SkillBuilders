@@ -1,3 +1,67 @@
+POST http://13.42.233.112:8080/skillbuilders_1.0/verificaEmail
+Content-Type: application/json
+Content-Length: 45
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=5B35341C6B52E99205D10E560D421F03
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "nicola1.travaglini@gmail.com"
+}
+
+<> 2023-05-13T221913.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/verificaEmail
+Content-Type: application/json
+Content-Length: 45
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=6EC3BB2C9C86213DA35E6BE6766121C0
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "nicola1.travaglini@gmail.com"
+}
+
+<> 2023-05-13T220753.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/verificaEmail
+Content-Type: application/json
+Content-Length: 45
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=6EC3BB2C9C86213DA35E6BE6766121C0
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "nicola1.travaglini@gmail.com"
+}
+
+<> 2023-05-13T214442.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/controllaOtpEmail
+Content-Type: application/json
+Content-Length: 18
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=C9E7CB88015A42BD3A63E5F645D6A29F
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "otp": 84855
+}
+
+<> 2023-05-11T232813.200.txt
+
+###
+
 POST http://localhost:8080/SkillBuilders_war/registrazione
 Content-Type: application/json
 Content-Length: 211
@@ -808,86 +872,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2023-05-11T194918.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/registrazione
-Content-Type: application/json
-Content-Length: 199
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=1BFAF69462B00C99B41CB472CE2AAACA
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "nome": "Francesco",
-  "password": "specifichebrutte",
-  "email": "sorghi@gmail.com",
-  "anno": 3,
-  "indirizzo": "informatico",
-  "foto": "ciao.jpg",
-  "comune": "Navile",
-  "flagTutor": false
-}
-
-<> 2023-05-11T194915.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/accesso
-Content-Type: application/json
-Content-Length: 67
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=1BFAF69462B00C99B41CB472CE2AAACA
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "sorghi@gmail.com",
-  "password": "specifichebrutte"
-}
-
-<> 2023-05-11T194701.404.html
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/accesso
-Content-Type: application/json
-Content-Length: 67
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=1BFAF69462B00C99B41CB472CE2AAACA
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "sorghi@gmail.com",
-  "password": "specifichebrutte"
-}
-
-<> 2023-05-11T194700.404.html
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/registrazione
-Content-Type: application/json
-Content-Length: 199
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=1BFAF69462B00C99B41CB472CE2AAACA
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "nome": "Francesco",
-  "password": "specifichebrutte",
-  "email": "sorghi@gmail.com",
-  "anno": 3,
-  "indirizzo": "informatico",
-  "foto": "ciao.jpg",
-  "comune": "Navile",
-  "flagTutor": false
-}
-
-<> 2023-05-11T194658.404.html
 
 ###
 
