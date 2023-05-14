@@ -12,9 +12,8 @@ import java.util.Properties;
 
 public class EmailSender {
 	private final String emailFrom = "skillbuilders05@gmail.com";
-	private final String usernameFrom = "AKIAQUOFW57HDGAXJLZZ";
-	private final String passwordFrom = "BJbvk0wzBybbPdjEx8/wJTX68OmRlRtUt/2Joqms4CyX";
-	private final String providerFrom = "email-smtp.eu-north-1.amazonaws.com";
+	private final String passwordFrom = "f1rIXO3ySQn8PWFh";
+	private final String providerFrom = "smtp-relay.sendinblue.com";
 	private final int port = 587;
 	private String emailTo;
 	private int otp;
@@ -38,8 +37,6 @@ public class EmailSender {
 		msg.setRecipients(Message.RecipientType.TO, emailTo);
 		msg.setSubject("OTP SkillBuilders");
 		msg.setText(Integer.toString(otp));
-		Transport transport = session.getTransport();
-		transport.connect(providerFrom, usernameFrom, passwordFrom);
-		transport.sendMessage(msg, msg.getAllRecipients());
+		Transport.send(msg, emailFrom, passwordFrom);
 	}
 }
