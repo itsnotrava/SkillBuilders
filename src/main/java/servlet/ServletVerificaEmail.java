@@ -37,7 +37,7 @@ public class ServletVerificaEmail extends HttpServlet {
 			EmailSender sender = new EmailSender(email, otp);
 			sender.send();
 
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession(true);
 			session.setAttribute("email", email);
 			session.setAttribute("otp", otp);
 

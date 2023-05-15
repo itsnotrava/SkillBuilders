@@ -1,3 +1,130 @@
+POST http://13.42.233.112:8080/skillbuilders_1.0/controllaOtpEmail
+Content-Type: application/json
+Content-Length: 18
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=49AD4B5FA536511FE973435377927AFA
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "otp": 53924
+}
+
+<> 2023-05-14T202821.200.txt
+
+###
+
+# @no-cookie-jar
+POST http://13.42.233.112:8080/skillbuilders_1.0/verificaEmail
+Content-Type: application/json
+Content-Length: 45
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "nicola1.travaglini@gmail.com"
+}
+
+<> 2023-05-14T202805.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/controllaOtpEmail
+Content-Type: application/json
+Content-Length: 18
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=49AD4B5FA536511FE973435377927AFA
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "otp": 25048
+}
+
+<> 2023-05-14T200451.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/verificaEmail
+Content-Type: application/json
+Content-Length: 45
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "nicola1.travaglini@gmail.com"
+}
+
+<> 2023-05-14T200433.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/controllaOtpEmail
+Content-Type: application/json
+Content-Length: 18
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=38052D025E3A8F40A1AFD7DCC7E1A718
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "otp": 66738
+}
+
+<> 2023-05-14T200421.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/verificaEmail
+Content-Type: application/json
+Content-Length: 45
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=38052D025E3A8F40A1AFD7DCC7E1A718
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "nicola1.travaglini@gmail.com"
+}
+
+<> 2023-05-14T200402.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/controllaOtpEmail
+Content-Type: application/json
+Content-Length: 18
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=38052D025E3A8F40A1AFD7DCC7E1A718
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "otp": 63370
+}
+
+<> 2023-05-14T195440.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/verificaEmail
+Content-Type: application/json
+Content-Length: 45
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=F19EA565369965DCCD2538971B686C6A
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "nicola1.travaglini@gmail.com"
+}
+
+<> 2023-05-14T195413.200.txt
+
+###
+
 POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
 Content-Type: application/json
 Content-Length: 194
@@ -702,141 +829,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2023-05-11T212141.200.txt
-
-###
-
-# @no-cookie-jar
-POST http://localhost:8080/SkillBuilders_war/verificaEmail
-Content-Type: application/json
-Content-Length: 45
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola1.travaglini@gmail.com"
-}
-
-<> 2023-05-11T212136.200.txt
-
-###
-
-POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
-Content-Type: application/json
-Content-Length: 199
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=C9E7CB88015A42BD3A63E5F645D6A29F
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "nome": "Francesco",
-  "password": "specifichebrutte",
-  "email": "sorghi@gmail.com",
-  "anno": 3,
-  "indirizzo": "informatico",
-  "foto": "ciao.jpg",
-  "comune": "Navile",
-  "flagTutor": false
-}
-
-<> 2023-05-11T212124.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/verificaEmail
-Content-Type: application/json
-Content-Length: 45
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=4FB0CE632AE18F5E48258D1F19B4D4BB
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola1.travaglini@gmail.com"
-}
-
-<> 2023-05-11T212107.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/verificaEmail
-Content-Type: application/json
-Content-Length: 45
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=4FB0CE632AE18F5E48258D1F19B4D4BB
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola1.travaglini@gmail.com"
-}
-
-<> 2023-05-11T212055.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/verificaEmail
-Content-Type: application/json
-Content-Length: 45
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=4FB0CE632AE18F5E48258D1F19B4D4BB
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola1.travaglini@gmail.com"
-}
-
-<> 2023-05-11T211935.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/verificaEmail
-Content-Type: application/json
-Content-Length: 45
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=4FB0CE632AE18F5E48258D1F19B4D4BB
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola1.travaglini@gmail.com"
-}
-
-<> 2023-05-11T211743.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/verificaEmail
-Content-Type: application/json
-Content-Length: 45
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=4FB0CE632AE18F5E48258D1F19B4D4BB
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola1.travaglini@gmail.com"
-}
-
-<> 2023-05-11T211455.500.html
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/verificaEmail
-Content-Type: application/json
-Content-Length: 45
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=4FB0CE632AE18F5E48258D1F19B4D4BB
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola1.travaglini@gmail.com"
-}
-
-<> 2023-05-11T211252.500.html
 
 ###
 

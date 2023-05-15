@@ -18,7 +18,7 @@ public class ServletControllaOtpEmail extends HttpServlet {
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession(false);
 			int otpServer = (int) session.getAttribute("otp");
 			int otpClient = jsBody.get("otp").getAsInt();
 
@@ -32,7 +32,7 @@ public class ServletControllaOtpEmail extends HttpServlet {
 			}
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "formato del body scorretto");
+			responseJson.addProperty("contenuto", "formato del body scorretto: " + e.toString());
 		}
 
 		PrintWriter printWriter = response.getWriter();

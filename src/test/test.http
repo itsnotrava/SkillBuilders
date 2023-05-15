@@ -15,7 +15,7 @@ POST http://13.42.233.112:8080/skillbuilders_1.0/controllaOtpEmail
 Content-Type: application/json
 
 {
-  "otp": 24869
+  "otp": 53924
 }
 
 ### Registrazione
