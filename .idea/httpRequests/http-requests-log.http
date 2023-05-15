@@ -1,3 +1,56 @@
+POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutor
+Content-Type: application/json
+Content-Length: 59
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=AD0E9DC46742EF4AFC732411972F2766
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "anno": 0,
+  "provincia": "Navile",
+  "indirizzo": ""
+}
+
+<> 2023-05-15T192104.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutor
+Content-Type: application/json
+Content-Length: 53
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=AD0E9DC46742EF4AFC732411972F2766
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "anno": 0,
+  "provincia": "",
+  "indirizzo": ""
+}
+
+<> 2023-05-15T191927.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTicket
+Content-Type: application/json
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "anno": 0,
+  "provincia": "",
+  "materia": ""
+}
+
+<> 2023-05-15T191924.200.txt
+
+###
+
 POST http://localhost:8080/SkillBuilders_war/visualizzaProprio
 Content-Type: application/json
 Content-Length: 3
@@ -881,69 +934,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2023-05-15T184319.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/visualizzaTutor
-Content-Type: application/json
-Content-Length: 53
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "anno": 0,
-  "provincia": "",
-  "indirizzo": ""
-}
-
-<> 2023-05-15T184237.200.txt
-
-###
-
-POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
-Content-Type: application/json
-Content-Length: 193
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=49AD4B5FA536511FE973435377927AFA
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "nome": "trava",
-  "password": "ciao",
-  "email": "nicola.travaglini@gmail.com",
-  "anno": 5,
-  "indirizzo": "informatico",
-  "foto": "ciao.jpg",
-  "comune": "Navile",
-  "flagTutor": true
-}
-
-<> 2023-05-15T184045.200.txt
-
-###
-
-POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
-Content-Type: application/json
-Content-Length: 194
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=49AD4B5FA536511FE973435377927AFA
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "nome": "trava",
-  "password": "ciao",
-  "email": "nicola1.travaglini@gmail.com",
-  "anno": 5,
-  "indirizzo": "informatico",
-  "foto": "ciao.jpg",
-  "comune": "Navile",
-  "flagTutor": true
-}
-
-<> 2023-05-15T184024.200.txt
 
 ###
 

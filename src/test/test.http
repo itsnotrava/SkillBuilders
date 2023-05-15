@@ -62,7 +62,7 @@ Content-Type: application/json
 
 {
   "anno": 0,
-  "provincia": "",
+  "comune": "",
   "materia": ""
 }
 
@@ -80,6 +80,6 @@ Content-Type: application/json
 
 {
   "anno": 0,
-  "provincia": "",
+  "comune": "Navile",
   "indirizzo": ""
 }

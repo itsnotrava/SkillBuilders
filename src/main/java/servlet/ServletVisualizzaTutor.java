@@ -34,12 +34,12 @@ public class ServletVisualizzaTutor extends HttpServlet {
 
             // Prendi i dati dal body
             int anno = jsBody.get("anno").getAsInt();
-            String provincia = jsBody.get("provincia").getAsString();
+            String comune = jsBody.get("comune").getAsString();
             String indirizzo = jsBody.get("indirizzo").getAsString();
 
             // Costruisco la risposta
             SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-            ArrayList<String> tutors = skillBuildersDao.getTutors(anno, provincia, indirizzo);
+            ArrayList<String> tutors = skillBuildersDao.getTutors(anno, comune, indirizzo);
             JsonArray emails = new JsonArray();
             for (String string : tutors) {
                 emails.add(string);
