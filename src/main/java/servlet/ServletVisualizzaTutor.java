@@ -42,11 +42,10 @@ public class ServletVisualizzaTutor extends HttpServlet {
 
             // Costruisco la risposta
             SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-            ArrayList<Utente> tutors = skillBuildersDao.getTutors(anno, provincia, indirizzo);
+            ArrayList<String> tutors = skillBuildersDao.getTutors(anno, provincia, indirizzo);
             JsonArray emails = new JsonArray();
-            for (Utente utente : tutors) {
-                JsonObject jsUtente = gson.fromJson(gson.toJson(utente), JsonObject.class);
-                emails.add(jsUtente);
+            for (String string : tutors) {
+                emails.add(string);
             }
             responseJson.addProperty("risultato", "sucesso!");
             responseJson.add("emails", emails);

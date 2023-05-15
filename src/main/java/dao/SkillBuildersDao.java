@@ -32,8 +32,8 @@ public class SkillBuildersDao {
 			preparedStatement.setString(2, nome);
 			preparedStatement.setString(3, password);
 			preparedStatement.setInt(4, anno);
-			preparedStatement.setString(5, indirizzo);
-			preparedStatement.setString(6, foto);
+			preparedStatement.setString(5, foto);
+			preparedStatement.setString(6, indirizzo);
 			preparedStatement.setString(7, comune);
 			preparedStatement.setBoolean(8, flagTutor);
 
@@ -41,10 +41,10 @@ public class SkillBuildersDao {
 		}
 	}
 
-	public ArrayList<Utente> getTutors(int anno, String comune, String indirizzo) throws SQLException {
-		ArrayList<Utente> result = new ArrayList<>();
+	public ArrayList<String> getTutors(int anno, String comune, String indirizzo) throws SQLException {
+		ArrayList<String> result = new ArrayList<>();
 
-		String sql = "SELECT * FROM utente WHERE flag_tutor=1 AND (anno=? OR ?=0) AND (comune=? OR ?='') AND (indirizzo=? OR ?='')";
+		String sql = "SELECT email FROM utente WHERE flag_tutor=1 AND (anno=? OR ?=0) AND (comune=? OR ?='') AND (indirizzo=? OR ?='')";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setInt(1, anno);
 		preparedStatement.setInt(2, anno);
@@ -56,16 +56,7 @@ public class SkillBuildersDao {
 
 		while (resultSet.next()) {
 			String emailUtente = resultSet.getString(1);
-			String nomeUtente = resultSet.getString(2);
-			String passwordUtente = resultSet.getString(3);
-			int annoUtente = resultSet.getInt(4);
-			String indirizzoUtente = resultSet.getString(5);
-			String nome_fotoUtente = resultSet.getString(6);
-			String comuneUtente = resultSet.getString(7);
-			boolean flag_tutorUtente = resultSet.getBoolean(8);
-			Utente utente = new Utente(emailUtente, nomeUtente, passwordUtente, annoUtente, indirizzoUtente, nome_fotoUtente, comuneUtente, flag_tutorUtente);
-
-			result.add(utente);
+			result.add(emailUtente);
 		}
 
 		return result;
