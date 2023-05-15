@@ -23,27 +23,27 @@ POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
 Content-Type: application/json
 
 {
-  "nome": "trava",
+  "nome": "sos",
   "password": "ciao",
-  "email": "nicola1.travaglini@gmail.com",
+  "email": "nicola.travaglini@aldini.istruzioneer.it",
   "anno": 5,
-  "indirizzo": "informatico",
+  "indirizzo": "grafico",
   "foto": "ciao.jpg",
-  "comune": "Navile",
+  "comune": "Bolognina",
   "flagTutor": true
 }
 
 ### Accesso
-POST http://13.42.233.112:8080/skillbuilders_1.0/accesso
+POST http://localhost:8080/SkillBuilders_war/accesso
 Content-Type: application/json
 
 {
-  "email": "sorghi@gmail.com",
-  "password": "specifichebrutte"
+  "email": "nicola.travaglini@gmail.com",
+  "password": "ciao"
 }
 
 ### Visualizza proprio
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaProprio
+POST http://localhost:8080/SkillBuilders_war/visualizzaProprio
 Content-Type: application/json
 
 {
@@ -61,9 +61,9 @@ POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTicket
 Content-Type: application/json
 
 {
-  "anno": 3,
-  "provincia": "bolognetta",
-  "materia": "informatica"
+  "anno": 0,
+  "provincia": "",
+  "materia": ""
 }
 
 ### Cambia flag
@@ -79,7 +79,7 @@ POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutor
 Content-Type: application/json
 
 {
-  "anno": 3,
-  "provincia": "bolognetta",
-  "indirizzo": "informatica"
+  "anno": 0,
+  "provincia": "",
+  "indirizzo": ""
 }
