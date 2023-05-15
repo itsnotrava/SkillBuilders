@@ -32,8 +32,8 @@ public class SkillBuildersDao {
 			preparedStatement.setString(2, nome);
 			preparedStatement.setString(3, password);
 			preparedStatement.setInt(4, anno);
-			preparedStatement.setString(5, foto);
-			preparedStatement.setString(6, indirizzo);
+			preparedStatement.setString(5, indirizzo);
+			preparedStatement.setString(6, foto);
 			preparedStatement.setString(7, comune);
 			preparedStatement.setBoolean(8, flagTutor);
 
@@ -60,6 +60,29 @@ public class SkillBuildersDao {
 		}
 
 		return result;
+	}
+
+	public Utente getUtente(String email) throws SQLException, UtenteNonEsistente {
+		String sql = "SELECT * FROM utente WHERE email=?";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setString(1, email);
+		ResultSet resultSet = preparedStatement.executeQuery();
+
+		if (!resultSet.next()) {
+			throw new UtenteNonEsistente();
+		}
+
+		String emailUtente = resultSet.getString(1);
+		String nomeUtente = resultSet.getString(2);
+		String passwordUtente = resultSet.getString(3);
+		int annoUtente = resultSet.getInt(4);
+		String indirizzoUtente = resultSet.getString(5);
+		String nome_fotoUtente = resultSet.getString(6);
+		String comuneUtente = resultSet.getString(7);
+		boolean flag_tutorUtente = resultSet.getBoolean(8);
+		Utente utente = new Utente(emailUtente, nomeUtente, passwordUtente, annoUtente, indirizzoUtente, nome_fotoUtente, comuneUtente, flag_tutorUtente);
+
+		return utente;
 	}
 
 	public void checkUtenteEsistente(String email) throws SQLException, UtenteNonEsistente {

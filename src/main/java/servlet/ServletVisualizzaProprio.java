@@ -1,11 +1,15 @@
 package servlet;
 
 import java.io.*;
+import java.sql.SQLException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dao.SkillBuildersDao;
+import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.Utente;
 
 @WebServlet(name = "VisualizzaProprio", value = "/visualizzaProprio")
 public class ServletVisualizzaProprio extends HttpServlet {
@@ -14,29 +18,30 @@ public class ServletVisualizzaProprio extends HttpServlet {
         response.addHeader("Access-Control-Allow-Origin", "*");
 
         String body = getBody(request);
-        // CREDO UN JSON PER IL RISULTATO
-        JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);
-        // fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
+        Gson gson = new Gson();
+        JsonObject jsBody = gson.fromJson(body, JsonObject.class);
 
         JsonObject responseJson = new JsonObject();
         try {
+            // Prendi i dati dalla sessione
             HttpSession session = request.getSession();
-
             String email = (String) session.getAttribute("email");
-            // TODO
+
+            // Costruisco la risposta
+            SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
+            Utente utente = skillBuildersDao.getUtente(email);
+            JsonObject jsUtente = gson.fromJson(gson.toJson(utente), JsonObject.class);
             responseJson.addProperty("risultato", "sucesso!");
-            JsonObject contenutoJson = new JsonObject();
-            contenutoJson.addProperty("nome", "Francesco");
-            contenutoJson.addProperty("email", "sorghi@gmail.com");
-            contenutoJson.addProperty("emailRecupero", "si@gmail.com");
-            contenutoJson.addProperty("anno", 3);
-            contenutoJson.addProperty("indirizzo", "informatico");
-            contenutoJson.addProperty("foto", "1110001100101001");
-            contenutoJson.addProperty("quartiere", "Navile");
-            responseJson.add("contenuto", contenutoJson);
+            responseJson.add("contenuto", jsUtente);
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
             responseJson.addProperty("contenuto", "formato del body scorretto");
+        } catch (SQLException e) {
+            responseJson.addProperty("risultato", "boia errore!");
+            responseJson.addProperty("contenuto", "Java Exception");
+        } catch (UtenteNonEsistente e) {
+            responseJson.addProperty("risultato", "boia errore!");
+            responseJson.addProperty("contenuto", "utente non esistente");
         }
 
         // Invio il risultato al client

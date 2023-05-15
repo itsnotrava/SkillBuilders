@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Utente;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,10 +23,8 @@ public class ServletVisualizzaTutor extends HttpServlet {
         response.addHeader("Access-Control-Allow-Origin", "*");
 
         String body = getBody(request);
-        // CREDO UN JSON PER IL RISULTATO
         Gson gson = new Gson();
         JsonObject jsBody = gson.fromJson(body, JsonObject.class);
-        // fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
         JsonObject responseJson = new JsonObject();
         try {
@@ -63,7 +60,6 @@ public class ServletVisualizzaTutor extends HttpServlet {
         printWriter.flush();
     }
 
-    // PRESA DA INTERNET, SI OCCUPA DI FARE IL BODY DELLA RICHIESTA
     public static String getBody(HttpServletRequest request) throws IOException {
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = request.getReader();
