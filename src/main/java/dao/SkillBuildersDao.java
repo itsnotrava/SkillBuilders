@@ -4,10 +4,10 @@ import exceptions.UtenteNonEsistente;
 import exceptions.UtenteGiàEsistente;
 import exceptions.EmailOPasswordErrati;
 import factory.ConnectionFactory;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import model.Utente;
+
+import java.sql.*;
+import java.util.ArrayList;
 
 
 public class SkillBuildersDao {
@@ -39,6 +39,36 @@ public class SkillBuildersDao {
 
 			preparedStatement.execute();
 		}
+	}
+
+	public ArrayList<Utente> getTutors(int anno, String comune, String indirizzo) throws SQLException {
+		ArrayList<Utente> result = new ArrayList<>();
+
+		String sql = "SELECT * FROM utente WHERE flag_tutor=1 AND (anno=? OR ?=0) AND (comune=? OR ?='') AND (indirizzo=? OR ?='')";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setInt(1, anno);
+		preparedStatement.setInt(2, anno);
+		preparedStatement.setString(3, comune);
+		preparedStatement.setString(4, comune);
+		preparedStatement.setString(5, indirizzo);
+		preparedStatement.setString(6, indirizzo);
+		ResultSet resultSet = preparedStatement.executeQuery();
+
+		while (resultSet.next()) {
+			String emailUtente = resultSet.getString(1);
+			String nomeUtente = resultSet.getString(2);
+			String passwordUtente = resultSet.getString(3);
+			int annoUtente = resultSet.getInt(4);
+			String indirizzoUtente = resultSet.getString(5);
+			String nome_fotoUtente = resultSet.getString(6);
+			String comuneUtente = resultSet.getString(7);
+			boolean flag_tutorUtente = resultSet.getBoolean(8);
+			Utente utente = new Utente(emailUtente, nomeUtente, passwordUtente, annoUtente, indirizzoUtente, nome_fotoUtente, comuneUtente, flag_tutorUtente);
+
+			result.add(utente);
+		}
+
+		return result;
 	}
 
 	public void checkUtenteEsistente(String email) throws SQLException, UtenteNonEsistente {
