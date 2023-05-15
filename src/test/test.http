@@ -80,6 +80,6 @@ Content-Type: application/json
 
 {
   "anno": 0,
-  "comune": "Navile",
+  "comune": "",
   "indirizzo": ""
 }
