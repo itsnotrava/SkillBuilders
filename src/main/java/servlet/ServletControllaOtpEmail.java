@@ -10,6 +10,11 @@ import jakarta.servlet.annotation.*;
 @WebServlet(name = "controllaOtpEmail", value = "/controllaOtpEmail")
 public class ServletControllaOtpEmail extends HttpServlet {
 
+	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.addHeader("Access-Control-Allow-Headers", "*");
+	}
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
@@ -19,7 +24,8 @@ public class ServletControllaOtpEmail extends HttpServlet {
 		JsonObject responseJson = new JsonObject();
 		try {
 			HttpSession session = request.getSession(false);
-			int otpServer = (int) session.getAttribute("otp");
+			System.out.println(session.getId());
+			int otpServer = (int) session.getAttribute("email");
 			int otpClient = jsBody.get("otp").getAsInt();
 
 			if (otpServer == otpClient) {
