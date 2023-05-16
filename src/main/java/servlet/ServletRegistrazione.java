@@ -34,9 +34,9 @@ public class ServletRegistrazione extends HttpServlet {
 			boolean flagTutor = temp.get("flagTutor").getAsBoolean();
 
 			// OTTENGO HAS DELLA PASSWORD (BYcript)
-			//password = Hash.creoHash(password); NON FUNZIONA
+			//password = model.Hash.creoHash(password); NON FUNZIONA
 			password = BCrypt.hashpw(password, BCrypt.gensalt(12));
-			
+
 			// INSERISCO NEL DB
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
 			skillBuildersDao.insertUtente(nome, password, email, anno, indirizzo, foto, comune, flagTutor);

@@ -1,3 +1,5 @@
+package model;
+
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.security.NoSuchAlgorithmException;

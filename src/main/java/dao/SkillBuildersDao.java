@@ -7,6 +7,7 @@ import exceptions.EmailOPasswordErrati;
 import factory.ConnectionFactory;
 import model.Ticket;
 import model.Utente;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -143,13 +144,12 @@ public class SkillBuildersDao {
 	}
 
 	public void checkUtenteConPassword(String email, String password) throws SQLException, EmailOPasswordErrati {
-		String sql = "SELECT * FROM utente WHERE email=? AND password=?";
+		String sql = "SELECT password FROM utente WHERE email=?";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setString(1, email);
-		preparedStatement.setString(2, password);
 
 		ResultSet resultSet = preparedStatement.executeQuery();
-		if(!resultSet.next()) {
+		if(!resultSet.next() || !BCrypt.checkpw(resultSet.getString(1), password)) {
 			throw new EmailOPasswordErrati();
 		}
 	}
