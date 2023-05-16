@@ -1,15 +1,15 @@
 package model;
 
 public class Ticket {
-	private int id;
-	private String testo;
-	private String materia;
-	private String email_cliente;
+	public int id;
+	public String testo;
+	public String materia;
+	public Utente utente;
 
-	public Ticket(int id, String testo, String materia, String email_cliente) {
+	public Ticket(int id, String testo, String materia, Utente utente) {
 		this.id = id;
 		this.testo = testo;
 		this.materia = materia;
-		this.email_cliente = email_cliente;
+		this.utente = utente;
 	}
 }
