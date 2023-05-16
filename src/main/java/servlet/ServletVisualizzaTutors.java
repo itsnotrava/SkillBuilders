@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Utente;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,8 +17,8 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "VisualizzaTutor", value = "/visualizzaTutor")
-public class ServletVisualizzaTutor extends HttpServlet {
+@WebServlet(name = "VisualizzaTutors", value = "/visualizzaTutors")
+public class ServletVisualizzaTutors extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
@@ -39,10 +40,14 @@ public class ServletVisualizzaTutor extends HttpServlet {
 
             // Costruisco la risposta
             SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-            ArrayList<String> tutors = skillBuildersDao.getTutors(anno, comune, indirizzo);
+            ArrayList<Utente> tutors = skillBuildersDao.getTutors(anno, comune, indirizzo);
             JsonArray emails = new JsonArray();
-            for (String string : tutors) {
-                emails.add(string);
+            for (Utente tutor : tutors) {
+                JsonObject jsTutor = new JsonObject();
+                jsTutor.addProperty("email", tutor.email);
+                jsTutor.addProperty("nome", tutor.nome);
+                jsTutor.addProperty("biografia", ""); // FIXME: introdurre biografia
+                emails.add(jsTutor);
             }
             responseJson.addProperty("risultato", "sucesso!");
             responseJson.add("emails", emails);

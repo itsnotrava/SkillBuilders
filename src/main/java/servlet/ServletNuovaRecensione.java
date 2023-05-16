@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
-import exceptions.EmailOPasswordErrati;
+import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "accesso", value = "/accesso")
-public class ServletAccesso extends HttpServlet {
+@WebServlet(name = "nuovaRecensione", value = "/nuovaRecensione")
+public class ServletNuovaRecensione extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.addHeader("Access-Control-Allow-Origin", "*");
@@ -21,23 +21,30 @@ public class ServletAccesso extends HttpServlet {
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			String email = jsBody.get("email").getAsString();
-			String password = jsBody.get("password").getAsString();
+			// Prendo i dati dalla sessione
+			HttpSession session = request.getSession(false);
+			String email_cliente = (String) session.getAttribute("email");
 
+			// Prendo i dati dal body
+			int voto = jsBody.get("voto").getAsInt();
+			String descrizione = jsBody.get("descrizione").getAsString();
+			String materia = jsBody.get("materia").getAsString();
+			String email_tutor = jsBody.get("email_tutor").getAsString();
+
+			// Inserisco il ticket
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.checkUtenteConPassword(email, password);
-			
-			HttpSession session = request.getSession(true);
-			session.setAttribute("email", email);
+			skillBuildersDao.checkUtenteEsistente(email_tutor);
+			skillBuildersDao.insertRecensione(voto, descrizione, materia, email_tutor, email_cliente);
 
+			// Costruisco il risultato
 			responseJson.addProperty("risultato", "sucesso!");
-			responseJson.addProperty("contenuto", "accesso avvenuto");
+			responseJson.addProperty("contenuto", "recensione inserita");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
-		} catch (EmailOPasswordErrati e) {
+		} catch (UtenteNonEsistente e) {
 			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "email o password errati");
+			responseJson.addProperty("contenuto", "email tutor non trovata");
 		} catch (SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "Java Exception");
@@ -48,7 +55,7 @@ public class ServletAccesso extends HttpServlet {
 		printWriter.flush();
 	}
 
-	public static String getBody(HttpServletRequest request) throws IOException {
+	private static String getBody(HttpServletRequest request) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader reader = request.getReader();
 		String line;
@@ -57,5 +64,4 @@ public class ServletAccesso extends HttpServlet {
 		}
 		return sb.toString();
 	}
-
 }

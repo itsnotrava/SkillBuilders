@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### Registrazione
-POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
+POST http://localhost:8080/SkillBuilders_war/registrazione
 Content-Type: application/json
 
 {
@@ -38,8 +38,15 @@ POST http://localhost:8080/SkillBuilders_war/accesso
 Content-Type: application/json
 
 {
-  "email": "nicola.travaglini@gmail.com",
+  "email": "nicola.travaglini@aldini.istruzioneer.it",
   "password": "ciao"
+}
+
+### Logout (DA TESTARE)
+GET http://localhost:8080/SkillBuilders_war/logout
+Content-Type: application/json
+
+{
 }
 
 ### Visualizza proprio
@@ -56,14 +63,52 @@ Content-Type: application/json
 {
 }
 
-### Visualizza ticket
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTicket
+### Visualizza tickets
+POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTickets
 Content-Type: application/json
 
 {
   "anno": 0,
   "comune": "",
   "materia": ""
+}
+
+### Visualizza ticket
+POST http://localhost:8080/SkillBuilders_war/visualizzaTicket
+Content-Type: application/json
+
+{
+  "id": 3
+}
+
+### Visualizza tutors
+POST http://localhost:8080/SkillBuilders_war/visualizzaTutors
+Content-Type: application/json
+
+{
+  "anno": 0,
+  "comune": "",
+  "indirizzo": ""
+}
+
+### Inserisci ticket
+POST http://localhost:8080/SkillBuilders_war/inserisciTicket
+Content-Type: application/json
+
+{
+  "testo": "Aiuto psicologico per amore",
+  "materia": "sostegno"
+}
+
+### Inserisci recensione (DA TESTARE)
+POST http://localhost:8080/SkillBuilders_war/nuovaRecensione
+Content-Type: application/json
+
+{
+  "voto": 5,
+  "descrizione": "che schif",
+  "materia": "informatica",
+  "email_tutor": "sorghi@gmail.com"
 }
 
 ### Cambia flag
@@ -74,12 +119,21 @@ Content-Type: application/json
   "flagTutor": true
 }
 
-### Visualizza tutor
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutor
+### Modifica recensione (DA TESTARE)
+POST http://localhost:8080/SkillBuilders_war/modificaRecensione
 Content-Type: application/json
 
 {
-  "anno": 0,
-  "comune": "",
-  "indirizzo": ""
+  "id": 1,
+  "voto": 10,
+  "descrizione": "che bella!",
+  "materia": "informatica",
+  "email_tutor": "sorghi@gmail.com"
+}
+
+### Elimina utente (DA TESTARE)
+GET http://localhost:8080/SkillBuilders_war/eliminazione
+Content-Type: application/json
+
+{
 }

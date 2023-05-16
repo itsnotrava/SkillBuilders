@@ -12,7 +12,8 @@ import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "LogOut", value = "/logout")
 public class ServletLogOut extends HttpServlet {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         response.addHeader("Access-Control-Allow-Origin", "*");
 
         HttpSession session = request.getSession();

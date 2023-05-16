@@ -9,6 +9,7 @@ import dao.SkillBuildersDao;
 import exceptions.UtenteGiàEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @WebServlet(name = "registrazione", value = "/registrazione")
 public class ServletRegistrazione extends HttpServlet {
@@ -19,7 +20,9 @@ public class ServletRegistrazione extends HttpServlet {
 		String body = getBody(request);
 		JsonObject temp = new Gson().fromJson(body, JsonObject.class);
 
+
 		JsonObject responseJson = new JsonObject();
+		// PRENDO I PARAMETRI DAL BODY
 		try {
 			String nome = temp.get("nome").getAsString();
 			String password = temp.get("password").getAsString();
@@ -30,6 +33,11 @@ public class ServletRegistrazione extends HttpServlet {
 			String comune = temp.get("comune").getAsString();
 			boolean flagTutor = temp.get("flagTutor").getAsBoolean();
 
+			// OTTENGO HAS DELLA PASSWORD (BYcript)
+			//password = model.Hash.creoHash(password); NON FUNZIONA
+			password = BCrypt.hashpw(password, BCrypt.gensalt(12));
+
+			// INSERISCO NEL DB
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
 			skillBuildersDao.insertUtente(nome, password, email, anno, indirizzo, foto, comune, flagTutor);
 
@@ -51,6 +59,7 @@ public class ServletRegistrazione extends HttpServlet {
 		printWriter.flush();
 	}
 
+	// PER PRENDERE IL BODY
 	private static String getBody(HttpServletRequest request) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader reader = request.getReader();
