@@ -88,6 +88,14 @@ public class SkillBuildersDao {
 		preparedStatement.execute();
 	}
 
+	public void insertRecensione(int voto, String descrizione, String materia, String emailTutor, String emailCliente) {
+		// TODO
+	}
+
+	public void updateRecensione(int id, int voto, String descrizione, String materia, String emailTutor, String emailCliente) {
+		// TODO
+	}
+
 	public ArrayList<Utente> getTutors(int anno, String comune, String indirizzo) throws SQLException {
 		String sql = "SELECT * FROM utente WHERE flag_tutor=1 AND (anno=? OR ?=0) AND (comune=? OR ?='') AND (indirizzo=? OR ?='')";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
@@ -161,7 +169,6 @@ public class SkillBuildersDao {
 
 		ResultSet resultSet = preparedStatement.executeQuery();
 	}
-
 
 }
 
