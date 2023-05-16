@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### Registrazione
-POST http://13.42.233.112:8080/skillbuilders_1.0/registrazione
+POST http://localhost:8080/SkillBuilders_war/registrazione
 Content-Type: application/json
 
 {
@@ -38,7 +38,7 @@ POST http://localhost:8080/SkillBuilders_war/accesso
 Content-Type: application/json
 
 {
-  "email": "nicola.travaglini@gmail.com",
+  "email": "nicola.travaglini@aldini.istruzioneer.it",
   "password": "ciao"
 }
 
@@ -66,16 +66,16 @@ Content-Type: application/json
   "materia": ""
 }
 
-### Cambia flag
-POST http://13.42.233.112:8080/skillbuilders_1.0/cambiaFlag
+### Visualizza ticket
+POST http://localhost:8080/SkillBuilders_war/visualizzaTicket
 Content-Type: application/json
 
 {
-  "flagTutor": true
+  "id": 3
 }
 
-### Visualizza tutor
-POST http://localhost:8080/SkillBuilders_war/visualizzaTutor
+### Visualizza tutors
+POST http://localhost:8080/SkillBuilders_war/visualizzaTutors
 Content-Type: application/json
 
 {
@@ -89,6 +89,14 @@ POST http://localhost:8080/SkillBuilders_war/inserisciTicket
 Content-Type: application/json
 
 {
-  "testo": "Richiesta aiuto Python",
-  "materia": "informatica"
+  "testo": "Aiuto psicologico per amore",
+  "materia": "sostegno"
+}
+
+### Cambia flag
+POST http://13.42.233.112:8080/skillbuilders_1.0/cambiaFlag
+Content-Type: application/json
+
+{
+  "flagTutor": true
 }

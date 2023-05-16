@@ -51,7 +51,6 @@ public class ServletVisualizzaProprio extends HttpServlet {
         printWriter.flush();
     }
 
-    // PRESA DA INTERNET, SI OCCUPA DI FARE IL BODY DELLA RICHIESTA
     public static String getBody(HttpServletRequest request) throws IOException {
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = request.getReader();

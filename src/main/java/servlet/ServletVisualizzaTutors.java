@@ -17,8 +17,8 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "VisualizzaTutor", value = "/visualizzaTutor")
-public class ServletVisualizzaTutor extends HttpServlet {
+@WebServlet(name = "VisualizzaTutors", value = "/visualizzaTutors")
+public class ServletVisualizzaTutors extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");

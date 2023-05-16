@@ -20,12 +20,11 @@ public class ServletVisualizzaTicket extends HttpServlet {
 		String body = getBody(request);
 		Gson gson = new Gson();
 		JsonObject jsBody = gson.fromJson(body, JsonObject.class);
-		// fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
 		JsonObject responseJson = new JsonObject();
 		try {
 			// Prendo i dati dalla sessione
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession(false);
 			String email = (String) session.getAttribute("email");
 
 			// Prendo i dati dal body
@@ -61,7 +60,6 @@ public class ServletVisualizzaTicket extends HttpServlet {
 		printWriter.flush();
 	}
 
-	// PRESA DA INTERNET, SI OCCUPA DI FARE IL BODY DELLA RICHIESTA
 	public static String getBody(HttpServletRequest request) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader reader = request.getReader();
