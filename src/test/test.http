@@ -25,7 +25,7 @@ Content-Type: application/json
 {
   "nome": "sos",
   "password": "ciao",
-  "email": "nicola.travaglini@aldini.istruzioneer.it",
+  "email": "travaglini@gmail.com",
   "anno": 5,
   "indirizzo": "grafico",
   "foto": "ciao.jpg",
