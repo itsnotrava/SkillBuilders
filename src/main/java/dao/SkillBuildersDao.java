@@ -157,7 +157,7 @@ public class SkillBuildersDao {
 		preparedStatement.setString(1, email);
 
 		ResultSet resultSet = preparedStatement.executeQuery();
-		if(!resultSet.next() || !BCrypt.checkpw(resultSet.getString(1), password)) {
+		if(!resultSet.next() || !BCrypt.checkpw(password, resultSet.getString(1))) {
 			throw new EmailOPasswordErrati();
 		}
 	}

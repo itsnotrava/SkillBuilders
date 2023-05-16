@@ -38,7 +38,7 @@ POST http://localhost:8080/SkillBuilders_war/accesso
 Content-Type: application/json
 
 {
-  "email": "nicola.travaglini@aldini.istruzioneer.it",
+  "email": "travaglini@gmail.com",
   "password": "ciao"
 }
 
