@@ -83,3 +83,12 @@ Content-Type: application/json
   "comune": "",
   "indirizzo": ""
 }
+
+### Inserisci ticket
+POST http://localhost:8080/SkillBuilders_war/inserisciTicket
+Content-Type: application/json
+
+{
+  "testo": "Richiesta aiuto Python",
+  "materia": "informatica"
+}

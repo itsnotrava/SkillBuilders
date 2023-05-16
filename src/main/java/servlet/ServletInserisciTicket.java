@@ -20,10 +20,13 @@ public class ServletInserisciTicket extends HttpServlet {
 
 		JsonObject responseJson = new JsonObject();
 		try {
-			// Prendo i valori dal body
+			// Prendo i dati dalla sessione
+			HttpSession session = request.getSession(false);
+			String email_cliente = (String) session.getAttribute("email");
+
+			// Prendo i dati dal body
 			String testo = jsBody.get("testo").getAsString();
 			String materia = jsBody.get("materia").getAsString();
-			String email_cliente = jsBody.get("email_cliente").getAsString();
 
 			// Inserisco il ticket
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
@@ -37,7 +40,7 @@ public class ServletInserisciTicket extends HttpServlet {
 			responseJson.addProperty("contenuto", "formato del body scorretto");
 		} catch (SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "Java Exception");
+			responseJson.addProperty("contenuto", "Java Exception: " + e.toString());
 		}
 
 		PrintWriter printWriter = response.getWriter();
