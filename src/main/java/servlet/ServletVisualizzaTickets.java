@@ -1,50 +1,44 @@
 package servlet;
 
 import java.io.*;
-import java.sql.SQLException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import dao.SkillBuildersDao;
-import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.Utente;
 
-@WebServlet(name = "VisualizzaProprio", value = "/visualizzaProprio")
-public class ServletVisualizzaProprio extends HttpServlet {
+@WebServlet(name = "VisualizzaTickets", value = "/visualizzaTickets")
+public class ServletVisualizzaTickets extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
 
         String body = getBody(request);
-        Gson gson = new Gson();
-        JsonObject jsBody = gson.fromJson(body, JsonObject.class);
+        // CREDO UN JSON PER IL RISULTATO
+        JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);
+        // fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
         JsonObject responseJson = new JsonObject();
         try {
-            // Prendi i dati dalla sessione
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession();
+
             String email = (String) session.getAttribute("email");
-
-            // Costruisco la risposta
-            SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-            Utente utente = skillBuildersDao.getUtente(email);
-            JsonObject jsUtente = gson.fromJson(gson.toJson(utente), JsonObject.class);
+            int anno = jsBody.get("anno").getAsInt();
+            String provincia = jsBody.get("provincia").getAsString();
+            String materia = jsBody.get("materia").getAsString();
+            // TODO
             responseJson.addProperty("risultato", "sucesso!");
-            responseJson.add("contenuto", jsUtente);
-
+            JsonObject contenutoJson = new JsonObject();
+            contenutoJson.addProperty("testo", "blabla");
+            contenutoJson.addProperty("emailCliente", "sorghi@gmail.com");
+            contenutoJson.addProperty("materia", "informatica");
+            contenutoJson.addProperty("anno", 3);
+            contenutoJson.addProperty("provincia", "paese delle meraviglie");
+            responseJson.add("contenuto", contenutoJson);
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
             responseJson.addProperty("contenuto", "formato del body scorretto");
-        } catch (SQLException e) {
-            responseJson.addProperty("risultato", "boia errore!");
-            responseJson.addProperty("contenuto", "Java Exception");
-        } catch (UtenteNonEsistente e) {
-            responseJson.addProperty("risultato", "boia errore!");
-            responseJson.addProperty("contenuto", "utente non esistente");
         }
-
         // Invio il risultato al client
         PrintWriter printWriter = response.getWriter();
         printWriter.println(responseJson.toString());

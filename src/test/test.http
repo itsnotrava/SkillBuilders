@@ -56,8 +56,8 @@ Content-Type: application/json
 {
 }
 
-### Visualizza ticket
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTicket
+### Visualizza tickets
+POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTickets
 Content-Type: application/json
 
 {
