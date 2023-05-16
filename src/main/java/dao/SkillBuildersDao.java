@@ -154,6 +154,15 @@ public class SkillBuildersDao {
 		}
 	}
 
+	public void eliminaUtente(String email) throws SQLException {
+		String sql = "DELETE FROM utente WHERE email=?";
+		PreparedStatement preparedStatement  = this.con.prepareStatement(sql);
+		preparedStatement.setString(1, email);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
+	}
+
+
 }
 
 

@@ -50,6 +50,23 @@
             <artifactId>angus-mail</artifactId>
             <version>2.0.1</version>
         </dependency>
+
+        <!-- NON FUNZIONA NON SO PERCHE' (HO PROVATO ANCHE VERSIONE 0.4) -->
+        <!-- https://mvnrepository.com/artifact/org.mindrot.bcrypt/bcrypt
+        <dependency>
+            <groupId>org.mindrot.bcrypt</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.3</version>
+        </dependency>
+        -->
+
+        <!-- Thanks for using https://jar-download.com -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>5.2.1.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>
