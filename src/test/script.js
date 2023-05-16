@@ -7,11 +7,12 @@ function main() {
 
 function mandaMail() {
     let body = {
-        "email": "nicola1.travaglini@gmail.com"
+        "email": "nicola.travaglini@gmail.com",
+        "password": "ciao"
     };
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8080/SkillBuilders_war/verificaEmail", true);
-    request.setRequestHeader("Content-Type", "application/json");
+    request.open("POST", "http://localhost:8080/SkillBuilders_war/accesso", true);
+    // request.setRequestHeader("Content-Type", "application/json");
     request.onload = function() {
         console.log(JSON.parse(request.responseText));
     }
@@ -21,11 +22,10 @@ function mandaMail() {
 
 function mandaOtp() {
     let body = {
-        "otp": 43422
     };
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:8080/SkillBuilders_war/controllaOtpEmail", true);
-    request.setRequestHeader("Content-Type", "application/json");
+    request.open("POST", "http://localhost:8080/SkillBuilders_war/visualizzaProprio", true);
+    // request.setRequestHeader("Content-Type", "application/json");
     request.onload = function() {
         console.log(JSON.parse(request.responseText));
     }
