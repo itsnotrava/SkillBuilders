@@ -41,6 +41,16 @@ public class SkillBuildersDao {
 		}
 	}
 
+	public void insertTicket(String testo, String materia, String email_cliente) throws SQLException {
+		String sql = "INSERTO INTO ticket (testo, materia, email_cliente) VALUES (?, ?, ?)";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setString(1, testo);
+		preparedStatement.setString(2, materia);
+		preparedStatement.setString(3, email_cliente);
+
+		preparedStatement.execute();
+	}
+
 	public ArrayList<String> getTutors(int anno, String comune, String indirizzo) throws SQLException {
 		ArrayList<String> result = new ArrayList<>();
 
