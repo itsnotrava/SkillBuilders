@@ -6,11 +6,12 @@ import java.sql.SQLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
+import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "inserisciTicket", value = "/inserisciTicket")
-public class ServletInserisciTicket extends HttpServlet {
+@WebServlet(name = "modificaRecensione", value = "/modificaRecensione")
+public class ServletModificaRecensione extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.addHeader("Access-Control-Allow-Origin", "*");
@@ -25,19 +26,26 @@ public class ServletInserisciTicket extends HttpServlet {
 			String email_cliente = (String) session.getAttribute("email");
 
 			// Prendo i dati dal body
-			String testo = jsBody.get("testo").getAsString();
+			int id = jsBody.get("id").getAsInt();
+			int voto = jsBody.get("voto").getAsInt();
+			String descrizione = jsBody.get("descrizione").getAsString();
 			String materia = jsBody.get("materia").getAsString();
+			String email_tutor = jsBody.get("email_tutor").getAsString();
 
 			// Inserisco il ticket
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.insertTicket(testo, materia, email_cliente);
+			skillBuildersDao.checkUtenteEsistente(email_tutor);
+			skillBuildersDao.updateRecensione(id, voto, descrizione, materia, email_tutor, email_cliente);
 
 			// Costruisco il risultato
 			responseJson.addProperty("risultato", "sucesso!");
-			responseJson.addProperty("contenuto", "ticket inserito");
+			responseJson.addProperty("contenuto", "recensione aggiornata");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
+		} catch (UtenteNonEsistente e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "email tutor non trovata");
 		} catch (SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "Java Exception");
