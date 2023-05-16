@@ -26,6 +26,7 @@ public class ServletModificaRecensione extends HttpServlet {
 			String email_cliente = (String) session.getAttribute("email");
 
 			// Prendo i dati dal body
+			int id = jsBody.get("id").getAsInt();
 			int voto = jsBody.get("voto").getAsInt();
 			String descrizione = jsBody.get("descrizione").getAsString();
 			String materia = jsBody.get("materia").getAsString();
@@ -34,11 +35,11 @@ public class ServletModificaRecensione extends HttpServlet {
 			// Inserisco il ticket
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
 			skillBuildersDao.checkUtenteEsistente(email_tutor);
-			skillBuildersDao.insertRecensione(voto, descrizione, materia, email_tutor, email_cliente);
+			skillBuildersDao.updateRecensione(id, voto, descrizione, materia, email_tutor, email_cliente);
 
 			// Costruisco il risultato
 			responseJson.addProperty("risultato", "sucesso!");
-			responseJson.addProperty("contenuto", "recensione inserita");
+			responseJson.addProperty("contenuto", "recensione aggiornata");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
