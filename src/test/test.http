@@ -42,6 +42,13 @@ Content-Type: application/json
   "password": "ciao"
 }
 
+### Logout (DA TESTARE)
+GET http://localhost:8080/SkillBuilders_war/logout
+Content-Type: application/json
+
+{
+}
+
 ### Visualizza proprio
 POST http://localhost:8080/SkillBuilders_war/visualizzaProprio
 Content-Type: application/json
@@ -93,10 +100,40 @@ Content-Type: application/json
   "materia": "sostegno"
 }
 
+### Inserisci recensione (DA TESTARE)
+POST http://localhost:8080/SkillBuilders_war/nuovaRecensione
+Content-Type: application/json
+
+{
+  "voto": 5,
+  "descrizione": "che schif",
+  "materia": "informatica",
+  "email_tutor": "sorghi@gmail.com"
+}
+
 ### Cambia flag
 POST http://13.42.233.112:8080/skillbuilders_1.0/cambiaFlag
 Content-Type: application/json
 
 {
   "flagTutor": true
+}
+
+### Modifica recensione (DA TESTARE)
+POST http://localhost:8080/SkillBuilders_war/modificaRecensione
+Content-Type: application/json
+
+{
+  "id": 1,
+  "voto": 10,
+  "descrizione": "che bella!",
+  "materia": "informatica",
+  "email_tutor": "sorghi@gmail.com"
+}
+
+### Elimina utente (DA TESTARE)
+GET http://localhost:8080/SkillBuilders_war/eliminazione
+Content-Type: application/json
+
+{
 }
