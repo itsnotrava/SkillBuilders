@@ -1,9 +1,11 @@
 package dao;
 
+import exceptions.TicketNonEsistente;
 import exceptions.UtenteNonEsistente;
 import exceptions.UtenteGiàEsistente;
 import exceptions.EmailOPasswordErrati;
 import factory.ConnectionFactory;
+import model.Ticket;
 import model.Utente;
 
 import java.sql.*;
@@ -27,6 +29,22 @@ public class SkillBuildersDao {
 		String comune = resultSet.getString(7);
 		boolean flag_tutor = resultSet.getBoolean(8);
 		return new Utente(email, nome, password, anno, indirizzo, nome_foto, comune, flag_tutor);
+	}
+
+	private Ticket getTicketFromResultSet(ResultSet resultSet) throws SQLException {
+		int id = resultSet.getInt(1);
+		String testo = resultSet.getString(2);
+		String materia = resultSet.getString(3);
+		String emailUtente = resultSet.getString(4);
+		String nomeUtente = resultSet.getString(5);
+		String passwordUtente = resultSet.getString(6);
+		int annoUtente = resultSet.getInt(7);
+		String indirizzoUtente = resultSet.getString(8);
+		String nome_fotoUtente = resultSet.getString(9);
+		String comuneUtente = resultSet.getString(10);
+		boolean flag_tutorUtente = resultSet.getBoolean(11);
+		Utente utente = new Utente(emailUtente, nomeUtente, passwordUtente, annoUtente, indirizzoUtente, nome_fotoUtente, comuneUtente, flag_tutorUtente);
+		return new Ticket(id, testo, materia, utente);
 	}
 
 	private ArrayList<Utente> getUtentiFromResultSet(ResultSet resultSet) throws SQLException {
@@ -56,7 +74,6 @@ public class SkillBuildersDao {
 			preparedStatement.setString(6, foto);
 			preparedStatement.setString(7, comune);
 			preparedStatement.setBoolean(8, flagTutor);
-
 			preparedStatement.execute();
 		}
 	}
@@ -67,7 +84,6 @@ public class SkillBuildersDao {
 		preparedStatement.setString(1, testo);
 		preparedStatement.setString(2, materia);
 		preparedStatement.setString(3, email_cliente);
-
 		preparedStatement.execute();
 	}
 
@@ -81,7 +97,6 @@ public class SkillBuildersDao {
 		preparedStatement.setString(5, indirizzo);
 		preparedStatement.setString(6, indirizzo);
 		ResultSet resultSet = preparedStatement.executeQuery();
-
 		return this.getUtentiFromResultSet(resultSet);
 	}
 
@@ -96,11 +111,20 @@ public class SkillBuildersDao {
 		return this.getUtenteFromResultSet(resultSet);
 	}
 
+	public Ticket getTicket(int id) throws SQLException, TicketNonEsistente {
+		String sql = "SELECT t.id, t.testo, t.materia, u.* FROM ticket t INNER JOIN utente u ON t.email_cliente=u.email";
+		Statement statement = this.con.createStatement();
+		ResultSet resultSet = statement.executeQuery(sql);
+		if (!resultSet.next()) {
+			throw new TicketNonEsistente();
+		}
+		return this.getTicketFromResultSet(resultSet);
+	}
+
 	public void checkUtenteEsistente(String email) throws SQLException, UtenteNonEsistente {
 		String sql = "SELECT * FROM utente WHERE email=?";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setString(1, email);
-
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if(!resultSet.next()) {
 			throw new UtenteNonEsistente();
