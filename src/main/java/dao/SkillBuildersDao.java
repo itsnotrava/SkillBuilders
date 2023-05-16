@@ -17,6 +17,26 @@ public class SkillBuildersDao {
 		this.con = ConnectionFactory.createConnection("mysql");
 	}
 
+	private Utente getUtenteFromResultSet(ResultSet resultSet) throws SQLException {
+		String email = resultSet.getString(1);
+		String nome = resultSet.getString(2);
+		String password = resultSet.getString(3);
+		int anno = resultSet.getInt(4);
+		String indirizzo = resultSet.getString(5);
+		String nome_foto = resultSet.getString(6);
+		String comune = resultSet.getString(7);
+		boolean flag_tutor = resultSet.getBoolean(8);
+		return new Utente(email, nome, password, anno, indirizzo, nome_foto, comune, flag_tutor);
+	}
+
+	private ArrayList<Utente> getUtentiFromResultSet(ResultSet resultSet) throws SQLException {
+		ArrayList<Utente> utenti = new ArrayList<>();
+		while (resultSet.next()) {
+			utenti.add(this.getUtenteFromResultSet(resultSet));
+		}
+		return utenti;
+	}
+
 	public void insertUtente(String nome, String password, String email, int anno, String foto, String indirizzo, String comune, boolean flagTutor) throws SQLException, UtenteGiàEsistente {
 		try {
 			/*
@@ -51,10 +71,8 @@ public class SkillBuildersDao {
 		preparedStatement.execute();
 	}
 
-	public ArrayList<String> getTutors(int anno, String comune, String indirizzo) throws SQLException {
-		ArrayList<String> result = new ArrayList<>();
-
-		String sql = "SELECT email FROM utente WHERE flag_tutor=1 AND (anno=? OR ?=0) AND (comune=? OR ?='') AND (indirizzo=? OR ?='')";
+	public ArrayList<Utente> getTutors(int anno, String comune, String indirizzo) throws SQLException {
+		String sql = "SELECT * FROM utente WHERE flag_tutor=1 AND (anno=? OR ?=0) AND (comune=? OR ?='') AND (indirizzo=? OR ?='')";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setInt(1, anno);
 		preparedStatement.setInt(2, anno);
@@ -64,12 +82,7 @@ public class SkillBuildersDao {
 		preparedStatement.setString(6, indirizzo);
 		ResultSet resultSet = preparedStatement.executeQuery();
 
-		while (resultSet.next()) {
-			String emailUtente = resultSet.getString(1);
-			result.add(emailUtente);
-		}
-
-		return result;
+		return this.getUtentiFromResultSet(resultSet);
 	}
 
 	public Utente getUtente(String email) throws SQLException, UtenteNonEsistente {
@@ -77,22 +90,10 @@ public class SkillBuildersDao {
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setString(1, email);
 		ResultSet resultSet = preparedStatement.executeQuery();
-
 		if (!resultSet.next()) {
 			throw new UtenteNonEsistente();
 		}
-
-		String emailUtente = resultSet.getString(1);
-		String nomeUtente = resultSet.getString(2);
-		String passwordUtente = resultSet.getString(3);
-		int annoUtente = resultSet.getInt(4);
-		String indirizzoUtente = resultSet.getString(5);
-		String nome_fotoUtente = resultSet.getString(6);
-		String comuneUtente = resultSet.getString(7);
-		boolean flag_tutorUtente = resultSet.getBoolean(8);
-		Utente utente = new Utente(emailUtente, nomeUtente, passwordUtente, annoUtente, indirizzoUtente, nome_fotoUtente, comuneUtente, flag_tutorUtente);
-
-		return utente;
+		return this.getUtenteFromResultSet(resultSet);
 	}
 
 	public void checkUtenteEsistente(String email) throws SQLException, UtenteNonEsistente {

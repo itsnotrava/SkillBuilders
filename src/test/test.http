@@ -75,7 +75,7 @@ Content-Type: application/json
 }
 
 ### Visualizza tutor
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutor
+POST http://localhost:8080/SkillBuilders_war/visualizzaTutor
 Content-Type: application/json
 
 {

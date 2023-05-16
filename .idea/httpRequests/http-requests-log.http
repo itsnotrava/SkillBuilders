@@ -1,3 +1,21 @@
+POST http://localhost:8080/SkillBuilders_war/visualizzaTutor
+Content-Type: application/json
+Content-Length: 50
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=9A2B58D4261D7B45817E852EFCA0A24D
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "anno": 0,
+  "comune": "",
+  "indirizzo": ""
+}
+
+<> 2023-05-16T141106.200.txt
+
+###
+
 POST http://localhost:8080/SkillBuilders_war/inserisciTicket
 Content-Type: application/json
 Content-Length: 67
@@ -890,24 +908,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2023-05-15T185154.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/visualizzaTutor
-Content-Type: application/json
-Content-Length: 64
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=E2B5BFA09C03F5CC97902443CC4CC5B0
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "anno": 0,
-  "provincia": "",
-  "indirizzo": "informatico"
-}
-
-<> 2023-05-15T185059.200.txt
 
 ###
 

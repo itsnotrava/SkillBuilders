@@ -1,14 +1,14 @@
 package model;
 
 public class Utente {
-	private String email;
-	private String nome;
-	private String password;
-	private int anno;
-	private String indirizzo;
-	private String nome_foto;
-	private String comune;
-	private boolean flag_tutor;
+	public String email;
+	public String nome;
+	public String password;
+	public int anno;
+	public String indirizzo;
+	public String nome_foto;
+	public String comune;
+	public boolean flag_tutor;
 
 	public Utente(String email, String nome, String password, int anno, String indirizzo, String nome_foto, String comune, boolean flag_tutor) {
 		this.email = email;
