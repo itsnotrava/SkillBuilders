@@ -15,6 +15,7 @@ import org.sqlite.SQLiteDataSource;
  * </ul>
  * by @NicolaTravaglini
  */
+
 public class ConnectionFactory {
 
 	public static Connection createConnection(String tipoDatabase) throws SQLException {
