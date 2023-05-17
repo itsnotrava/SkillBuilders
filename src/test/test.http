@@ -42,7 +42,7 @@ Content-Type: application/json
   "password": "ciao"
 }
 
-### Logout (DA TESTARE)
+### Logout
 GET http://localhost:8080/SkillBuilders_war/logout
 Content-Type: application/json
 
@@ -64,7 +64,7 @@ Content-Type: application/json
 }
 
 ### Visualizza tickets
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTickets
+POST http://localhost:8080/SkillBuilders_war/visualizzaTickets
 Content-Type: application/json
 
 {
@@ -131,7 +131,7 @@ Content-Type: application/json
   "email_tutor": "sorghi@gmail.com"
 }
 
-### Elimina utente (DA TESTARE)
+### Elimina utente
 GET http://localhost:8080/SkillBuilders_war/eliminazione
 Content-Type: application/json
 

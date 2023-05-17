@@ -13,11 +13,22 @@ import jakarta.servlet.annotation.*;
 @WebServlet(name = "LogOut", value = "/logout")
 public class ServletLogOut extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         response.addHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
         response.addHeader("Access-Control-Allow-Credentials", "true");
 
-        HttpSession session = request.getSession();
-        session.invalidate();
+        JsonObject responseJson = new JsonObject();
+        try {
+            HttpSession session = request.getSession(false);
+            session.invalidate();
+            responseJson.addProperty("risultato", "successo");
+            responseJson.addProperty("contenuto", "logout avvenuto");
+        } catch (NullPointerException e) {
+            responseJson.addProperty("risultato", "boia errore!");
+            responseJson.addProperty("contenuto", "sessione inesistente");
+        }
+
+        PrintWriter printWriter = response.getWriter();
+        printWriter.println(responseJson.toString());
+        printWriter.flush();
     }
 }
