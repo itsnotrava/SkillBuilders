@@ -2,12 +2,15 @@ package servlet;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.Ticket;
 
 @WebServlet(name = "VisualizzaTickets", value = "/visualizzaTickets")
 public class ServletVisualizzaTickets extends HttpServlet {
@@ -33,11 +36,18 @@ public class ServletVisualizzaTickets extends HttpServlet {
 
             // Costruisco il risultato
             SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-
-
+            ArrayList<Ticket> tickets = skillBuildersDao.getTickets(anno, comune, materia);
+            JsonArray jsTickets = new JsonArray();
+            for (Ticket ticket : tickets) {
+                JsonObject jsTicket = new JsonObject();
+                jsTicket.addProperty("testo", ticket.testo);
+                jsTicket.addProperty("materia", ticket.materia);
+                jsTicket.addProperty("email_cliente", ticket.utente.email);
+                jsTicket.addProperty("username", ticket.utente.nome);
+                jsTickets.add(jsTicket);
+            }
             responseJson.addProperty("risultato", "sucesso!");
-            JsonObject contenutoJson = new JsonObject();
-            responseJson.add("contenuto", contenutoJson);
+            responseJson.add("contenuto", jsTickets);
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
             responseJson.addProperty("contenuto", "formato del body scorretto");
