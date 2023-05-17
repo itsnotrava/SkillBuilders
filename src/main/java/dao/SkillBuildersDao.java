@@ -117,15 +117,15 @@ public class SkillBuildersDao {
 		return this.getUtentiFromResultSet(resultSet);
 	}
 
-	public ArrayList<Ticket> getTickets(int anno, String comune, String indirizzo) throws SQLException {
-		String sql = "SELECT * FROM ticket WHERE (anno=? OR ?=0) AND (comune=? OR ?='') AND (indirizzo=? OR ?='')";
+	public ArrayList<Ticket> getTickets(int anno, String comune, String materia) throws SQLException {
+		String sql = "SELECT t.id, t.testo, t.materia, u.* FROM ticket t INNER JOIN utente u ON t.email_cliente=u.email AND (u.anno=? OR ?=0) AND (u.comune=? OR ?='') AND (t.materia=? OR ?='')";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setInt(1, anno);
 		preparedStatement.setInt(2, anno);
 		preparedStatement.setString(3, comune);
 		preparedStatement.setString(4, comune);
-		preparedStatement.setString(5, indirizzo);
-		preparedStatement.setString(6, indirizzo);
+		preparedStatement.setString(5, materia);
+		preparedStatement.setString(6, materia);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		return this.getTicketsFromResultSet(resultSet);
 	}

@@ -30,6 +30,7 @@ public class ServletVisualizzaProprio extends HttpServlet {
             // Costruisco la risposta
             SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
             Utente utente = skillBuildersDao.getUtente(email);
+            // FIXME: non deve inviare la password
             JsonObject jsUtente = gson.fromJson(gson.toJson(utente), JsonObject.class);
             responseJson.addProperty("risultato", "sucesso!");
             responseJson.add("contenuto", jsUtente);

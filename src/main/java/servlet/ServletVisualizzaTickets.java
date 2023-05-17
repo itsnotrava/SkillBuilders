@@ -48,6 +48,7 @@ public class ServletVisualizzaTickets extends HttpServlet {
             }
             responseJson.addProperty("risultato", "sucesso!");
             responseJson.add("contenuto", jsTickets);
+
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
             responseJson.addProperty("contenuto", "formato del body scorretto");

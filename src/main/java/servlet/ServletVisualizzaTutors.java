@@ -51,6 +51,7 @@ public class ServletVisualizzaTutors extends HttpServlet {
             }
             responseJson.addProperty("risultato", "sucesso!");
             responseJson.add("emails", jsTutors);
+
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
             responseJson.addProperty("contenuto", "formato del body scorretta");
