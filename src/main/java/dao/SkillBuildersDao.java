@@ -96,12 +96,29 @@ public class SkillBuildersDao {
 		preparedStatement.execute();
 	}
 
-	public void insertRecensione(int voto, String descrizione, String materia, String emailTutor, String emailCliente) {
-		// TODO
+	public void insertRecensione(int voto, String descrizione, String materia, String emailTutor, String emailCliente) throws SQLException {
+		String sql = "INSERT INTO recensione (voto, descrizione, materia, emailTutor, emailCliente) VALUES (?, ?, ?, ?, ?)";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setInt(1, voto);
+		preparedStatement.setString(2, descrizione);
+		preparedStatement.setString(3, materia);
+		preparedStatement.setString(4, emailTutor);
+		preparedStatement.setString(5, emailCliente);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
 	}
 
-	public void updateRecensione(int id, int voto, String descrizione, String materia, String emailTutor, String emailCliente) {
-		// TODO
+	public void updateRecensione(int id, int voto, String descrizione, String materia, String emailTutor, String emailCliente) throws SQLException {
+		String sql = "UPDATE recensione SET voto=?, descrizione=?, materia=?, emailTutor=?, emailCliente=? WHERE id=?";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setInt(1, voto);
+		preparedStatement.setString(2, descrizione);
+		preparedStatement.setString(3, materia);
+		preparedStatement.setString(4, emailTutor);
+		preparedStatement.setString(5, emailCliente);
+		preparedStatement.setInt(6, id);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
 	}
 
 	public ArrayList<Utente> getTutors(int anno, String comune, String indirizzo) throws SQLException {
@@ -189,6 +206,17 @@ public class SkillBuildersDao {
 		preparedStatement.setString(1, email);
 
 		preparedStatement.execute();
+	}
+
+	// CANDIDANDOSI PER UN TICKET
+	public void creaNotifica(String email_tutor, int id_ticket, String testo) throws SQLException{
+		String sql = "INSERT INTO notifica (testo, materia, email_cliente) VALUES (?, ?, ?)";
+		PreparedStatement preparedStatement  = this.con.prepareStatement(sql);
+		preparedStatement.setString(1, email_tutor);
+		preparedStatement.setInt(2, id_ticket);
+		preparedStatement.setString(3, testo);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
 	}
 
 }
