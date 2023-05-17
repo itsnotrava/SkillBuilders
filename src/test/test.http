@@ -42,7 +42,7 @@ Content-Type: application/json
   "password": "ciao"
 }
 
-### Logout (DA TESTARE)
+### Logout
 GET http://localhost:8080/SkillBuilders_war/logout
 Content-Type: application/json
 
