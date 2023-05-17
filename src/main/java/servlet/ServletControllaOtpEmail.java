@@ -10,13 +10,9 @@ import jakarta.servlet.annotation.*;
 @WebServlet(name = "controllaOtpEmail", value = "/controllaOtpEmail")
 public class ServletControllaOtpEmail extends HttpServlet {
 
-	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.addHeader("Access-Control-Allow-Origin", "*");
-		response.addHeader("Access-Control-Allow-Headers", "*");
-	}
-
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.addHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+		response.addHeader("Access-Control-Allow-Credentials", "true");
 
 		String body = getBody(request);
 		JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);
