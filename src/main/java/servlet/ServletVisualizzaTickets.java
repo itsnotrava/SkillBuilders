@@ -1,9 +1,11 @@
 package servlet;
 
 import java.io.*;
+import java.sql.SQLException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dao.SkillBuildersDao;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -20,25 +22,30 @@ public class ServletVisualizzaTickets extends HttpServlet {
 
         JsonObject responseJson = new JsonObject();
         try {
-            HttpSession session = request.getSession();
-
+            // Prendo i dati dalla sessione
+            HttpSession session = request.getSession(false);
             String email = (String) session.getAttribute("email");
+
+            // Prendo i dati dal body
             int anno = jsBody.get("anno").getAsInt();
-            String provincia = jsBody.get("provincia").getAsString();
+            String comune = jsBody.get("comune").getAsString();
             String materia = jsBody.get("materia").getAsString();
-            // TODO
+
+            // Costruisco il risultato
+            SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
+
+
             responseJson.addProperty("risultato", "sucesso!");
             JsonObject contenutoJson = new JsonObject();
-            contenutoJson.addProperty("testo", "blabla");
-            contenutoJson.addProperty("emailCliente", "sorghi@gmail.com");
-            contenutoJson.addProperty("materia", "informatica");
-            contenutoJson.addProperty("anno", 3);
-            contenutoJson.addProperty("provincia", "paese delle meraviglie");
             responseJson.add("contenuto", contenutoJson);
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
             responseJson.addProperty("contenuto", "formato del body scorretto");
+        } catch (SQLException e) {
+            responseJson.addProperty("risultato", "boia errore!");
+            responseJson.addProperty("contenuto", "Java Exception");
         }
+
         // Invio il risultato al client
         PrintWriter printWriter = response.getWriter();
         printWriter.println(responseJson.toString());

@@ -56,6 +56,14 @@ public class SkillBuildersDao {
 		return utenti;
 	}
 
+	private ArrayList<Ticket> getTicketsFromResultSet(ResultSet resultSet) throws SQLException {
+		ArrayList<Ticket> tickets = new ArrayList<>();
+		while (resultSet.next()) {
+			tickets.add(this.getTicketFromResultSet(resultSet));
+		}
+		return tickets;
+	}
+
 	public void insertUtente(String nome, String password, String email, int anno, String indirizzo, String foto, String comune, boolean flagTutor) throws SQLException, UtenteGiàEsistente {
 		try {
 			/*
@@ -107,6 +115,19 @@ public class SkillBuildersDao {
 		preparedStatement.setString(6, indirizzo);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		return this.getUtentiFromResultSet(resultSet);
+	}
+
+	public ArrayList<Ticket> getTickets(int anno, String comune, String indirizzo) throws SQLException {
+		String sql = "SELECT * FROM ticket WHERE (anno=? OR ?=0) AND (comune=? OR ?='') AND (indirizzo=? OR ?='')";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setInt(1, anno);
+		preparedStatement.setInt(2, anno);
+		preparedStatement.setString(3, comune);
+		preparedStatement.setString(4, comune);
+		preparedStatement.setString(5, indirizzo);
+		preparedStatement.setString(6, indirizzo);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		return this.getTicketsFromResultSet(resultSet);
 	}
 
 	public Utente getUtente(String email) throws SQLException, UtenteNonEsistente {
