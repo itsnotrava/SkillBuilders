@@ -219,6 +219,16 @@ public class SkillBuildersDao {
 		ResultSet resultSet = preparedStatement.executeQuery();
 	}
 
+	// ACCETTA/disaccetta UN CANDIDATO
+	public void accettaCandidato(int id_notifica, Boolean accettata) throws SQLException{
+		String sql = "UPDATE notifica SET accettata = ? WHERE id=?";
+		PreparedStatement preparedStatement  = this.con.prepareStatement(sql);
+		preparedStatement.setBoolean(1, accettata);
+		preparedStatement.setInt(2, id_notifica);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
+	}
+
 }
 
 
