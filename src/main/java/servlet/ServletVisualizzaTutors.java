@@ -30,7 +30,7 @@ public class ServletVisualizzaTutors extends HttpServlet {
         JsonObject responseJson = new JsonObject();
         try {
             // Prendi i dati dalla sessione
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(false);
             String email = (String) session.getAttribute("email");
 
             // Prendi i dati dal body
@@ -41,16 +41,17 @@ public class ServletVisualizzaTutors extends HttpServlet {
             // Costruisco la risposta
             SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
             ArrayList<Utente> tutors = skillBuildersDao.getTutors(anno, comune, indirizzo);
-            JsonArray emails = new JsonArray();
+            JsonArray jsTutors = new JsonArray();
             for (Utente tutor : tutors) {
                 JsonObject jsTutor = new JsonObject();
                 jsTutor.addProperty("email", tutor.email);
                 jsTutor.addProperty("nome", tutor.nome);
                 jsTutor.addProperty("biografia", ""); // FIXME: introdurre biografia
-                emails.add(jsTutor);
+                jsTutors.add(jsTutor);
             }
             responseJson.addProperty("risultato", "sucesso!");
-            responseJson.add("emails", emails);
+            responseJson.add("emails", jsTutors);
+
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
             responseJson.addProperty("contenuto", "formato del body scorretta");
