@@ -1,4 +1,21 @@
 POST http://localhost:8080/SkillBuilders_war/accesso
+Content-Type: application/json
+Content-Length: 59
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=B82FB682263553264C5FAEBC6BD60C7D
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "travaglini@gmail.com",
+  "password": "ciao"
+}
+
+<> 2023-05-17T200542.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/accesso
 Content-Length: 59
 Content-Type: */*; charset=UTF-8
 Connection: Keep-Alive
@@ -850,53 +867,3 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2023-05-16T123237.200.txt
 
-###
-
-POST http://localhost:8080/SkillBuilders_war/inserisciTicket
-Content-Type: application/json
-Content-Length: 67
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=9A2B58D4261D7B45817E852EFCA0A24D
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "testo": "Richiesta aiuto Python",
-  "materia": "informatica"
-}
-
-<> 2023-05-16T123213.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/accesso
-Content-Type: application/json
-Content-Length: 66
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=153DF1ABC5542AA95AC9D2C6D9A33E2E
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola.travaglini@gmail.com",
-  "password": "ciao"
-}
-
-<> 2023-05-16T123208.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/inserisciTicket
-Content-Type: application/json
-Content-Length: 67
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=153DF1ABC5542AA95AC9D2C6D9A33E2E
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "testo": "Richiesta aiuto Python",
-  "materia": "informatica"
-}
-
-<> 2023-05-16T123051.200.txt

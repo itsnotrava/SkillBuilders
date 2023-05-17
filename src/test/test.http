@@ -111,7 +111,7 @@ Content-Type: application/json
   "email_tutor": "sorghi@gmail.com"
 }
 
-### Cambia flag
+### Cambia flag (DA TESTARE)
 POST http://13.42.233.112:8080/skillbuilders_1.0/cambiaFlag
 Content-Type: application/json
 

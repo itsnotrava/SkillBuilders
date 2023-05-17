@@ -20,8 +20,7 @@ public class ServletControllaOtpEmail extends HttpServlet {
 		JsonObject responseJson = new JsonObject();
 		try {
 			HttpSession session = request.getSession(false);
-			System.out.println(session.getId());
-			int otpServer = (int) session.getAttribute("email");
+			int otpServer = (int) session.getAttribute("otp");
 			int otpClient = jsBody.get("otp").getAsInt();
 
 			if (otpServer == otpClient) {
