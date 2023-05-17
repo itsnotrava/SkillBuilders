@@ -16,14 +16,9 @@ import model.OTPGenerator;
 @WebServlet(name = "verificaEmail", value = "/verificaEmail")
 public class ServletVerificaEmail extends HttpServlet {
 
-	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.addHeader("Access-Control-Allow-Origin", "*");
-		response.addHeader("Access-Control-Allow-Headers", "*");
-	}
-
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.addHeader("Access-Control-Allow-Origin", "*");
-		response.addHeader("Access-Control-Request-Headers", "*");
+		response.addHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+		response.addHeader("Access-Control-Allow-Credentials", "true");
 
 		String body = getBody(request);
 		JsonObject jsBody = new Gson().fromJson(body, JsonObject.class);

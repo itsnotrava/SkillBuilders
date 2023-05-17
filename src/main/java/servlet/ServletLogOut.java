@@ -14,7 +14,8 @@ import jakarta.servlet.annotation.*;
 public class ServletLogOut extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.addHeader("Access-Control-Allow-Credentials", "true");
 
         HttpSession session = request.getSession();
         session.invalidate();

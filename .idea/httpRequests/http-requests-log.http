@@ -1,3 +1,20 @@
+POST http://localhost:8080/SkillBuilders_war/accesso
+Content-Length: 59
+Content-Type: */*; charset=UTF-8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=F90AF2FB05AD58122E1B1FC654D73754
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "travaglini@gmail.com",
+  "password": "ciao"
+}
+
+<> 2023-05-17T192617.200.txt
+
+###
+
 GET http://localhost:8080/SkillBuilders_war/logout
 Content-Type: application/json
 Content-Length: 3
@@ -820,22 +837,4 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2023-05-15T185913.200.txt
-
-###
-
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutor
-Content-Type: application/json
-Content-Length: 59
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=C40CE4F8BCDF5615F7BAD542850528F5
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "anno": 0,
-  "provincia": "Navile",
-  "indirizzo": ""
-}
-
-<> 2023-05-15T185907.200.txt
 

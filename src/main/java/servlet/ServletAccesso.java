@@ -14,7 +14,7 @@ import jakarta.servlet.annotation.*;
 public class ServletAccesso extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
+		response.addHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.addHeader("Access-Control-Allow-Credentials", "true");
 
 		String body = getBody(request);
@@ -30,7 +30,6 @@ public class ServletAccesso extends HttpServlet {
 			
 			HttpSession session = request.getSession(true);
 			session.setAttribute("email", email);
-
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "accesso avvenuto");
 		} catch (NullPointerException e) {

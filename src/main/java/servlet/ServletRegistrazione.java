@@ -15,7 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class ServletRegistrazione extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.addHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+		response.addHeader("Access-Control-Allow-Credentials", "true");
 
 		String body = getBody(request);
 		JsonObject temp = new Gson().fromJson(body, JsonObject.class);
