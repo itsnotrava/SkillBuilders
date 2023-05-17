@@ -30,7 +30,7 @@ public class ServletVisualizzaTutors extends HttpServlet {
         JsonObject responseJson = new JsonObject();
         try {
             // Prendi i dati dalla sessione
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(false);
             String email = (String) session.getAttribute("email");
 
             // Prendi i dati dal body
