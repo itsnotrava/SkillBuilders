@@ -38,7 +38,7 @@ POST http://localhost:8080/SkillBuilders_war/accesso
 Content-Type: application/json
 
 {
-  "email": "nicola.travaglini@aldini.istruzioneer.it",
+  "email": "travaglini@gmail.com",
   "password": "ciao"
 }
 
@@ -131,7 +131,7 @@ Content-Type: application/json
   "email_tutor": "sorghi@gmail.com"
 }
 
-### Elimina utente (DA TESTARE)
+### Elimina utente
 GET http://localhost:8080/SkillBuilders_war/eliminazione
 Content-Type: application/json
 
