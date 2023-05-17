@@ -15,7 +15,8 @@ import model.Utente;
 public class ServletVisualizzaProprio extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
+        response.addHeader("Access-Control-Allow-Credentials", "true");
 
         String body = getBody(request);
         Gson gson = new Gson();

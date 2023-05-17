@@ -1,17 +1,18 @@
 document.addEventListener("DOMContentLoaded", main);
 
 function main() {
-    document.getElementById("otp").addEventListener("click", mandaOtp);
-    mandaMail();
+    accesso();
+    document.getElementById("otp").addEventListener("click", visualizzaProprio);
 }
 
-function mandaMail() {
+function accesso() {
     let body = {
-        "email": "nicola.travaglini@gmail.com",
+        "email": "travaglini@gmail.com",
         "password": "ciao"
     };
     let request = new XMLHttpRequest();
     request.open("POST", "http://localhost:8080/SkillBuilders_war/accesso", true);
+    request.withCredentials = true;
     // request.setRequestHeader("Content-Type", "application/json");
     request.onload = function() {
         console.log(JSON.parse(request.responseText));
@@ -20,11 +21,12 @@ function mandaMail() {
 }
 
 
-function mandaOtp() {
+function visualizzaProprio() {
     let body = {
     };
     let request = new XMLHttpRequest();
     request.open("POST", "http://localhost:8080/SkillBuilders_war/visualizzaProprio", true);
+    request.withCredentials = true;
     // request.setRequestHeader("Content-Type", "application/json");
     request.onload = function() {
         console.log(JSON.parse(request.responseText));
