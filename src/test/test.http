@@ -56,7 +56,7 @@ Content-Type: application/json
 {
 }
 
-### Visualizza altrui
+### Visualizza altrui (DA TESTARE)
 POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaAltrui
 Content-Type: application/json
 
@@ -96,11 +96,11 @@ POST http://localhost:8080/SkillBuilders_war/inserisciTicket
 Content-Type: application/json
 
 {
-  "testo": "Aiuto psicologico per amore",
-  "materia": "sostegno"
+  "testo": "EFFE ENNE",
+  "materia": "informatica"
 }
 
-### Inserisci recensione (DA TESTARE)
+### Inserisci recensione
 POST http://localhost:8080/SkillBuilders_war/nuovaRecensione
 Content-Type: application/json
 
@@ -108,27 +108,36 @@ Content-Type: application/json
   "voto": 5,
   "descrizione": "che schif",
   "materia": "informatica",
-  "email_tutor": "sorghi@gmail.com"
+  "email_tutor": "travaglini@gmail.com"
+}
+
+### Inserisci notifica (candidatura per ticket)
+POST http://localhost:8080/SkillBuilders_war/candidatiPerTicket
+Content-Type: application/json
+
+{
+  "testo": "arrivo io!",
+  "id_ticket": 4
 }
 
 ### Cambia flag (DA TESTARE)
-POST http://13.42.233.112:8080/skillbuilders_1.0/cambiaFlag
+POST http://localhost:8080/SkillBuilders_war/cambiaFlag
 Content-Type: application/json
 
 {
   "flagTutor": true
 }
 
-### Modifica recensione (DA TESTARE)
+### Modifica recensione
 POST http://localhost:8080/SkillBuilders_war/modificaRecensione
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": 2,
   "voto": 10,
   "descrizione": "che bella!",
   "materia": "informatica",
-  "email_tutor": "sorghi@gmail.com"
+  "email_tutor": "travaglini@gmail.com"
 }
 
 ### Elimina utente

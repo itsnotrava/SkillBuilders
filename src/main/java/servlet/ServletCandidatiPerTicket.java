@@ -6,14 +6,13 @@ import java.sql.SQLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
-import exceptions.LezioneNonAvvenuta;
-import exceptions.RecensioneGiàInserita;
-import exceptions.UtenteNonEsistente;
+import exceptions.TicketNonEsistente;
+import exceptions.UtenteNonTutor;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "nuovaRecensione", value = "/nuovaRecensione")
-public class ServletNuovaRecensione extends HttpServlet {
+@WebServlet(name = "candidatiPerTicket", value = "/candidatiPerTicket")
+public class ServletCandidatiPerTicket extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.addHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
@@ -29,30 +28,25 @@ public class ServletNuovaRecensione extends HttpServlet {
 			String email_cliente = (String) session.getAttribute("email");
 
 			// Prendo i dati dal body
-			int voto = jsBody.get("voto").getAsInt();
-			String descrizione = jsBody.get("descrizione").getAsString();
-			String materia = jsBody.get("materia").getAsString();
-			String email_tutor = jsBody.get("email_tutor").getAsString();
+			int id_ticket = jsBody.get("id_ticket").getAsInt();
+			String testo = jsBody.get("testo").getAsString();
 
 			// Inserisco il ticket
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.insertRecensione(voto, descrizione, materia, email_tutor, email_cliente);
+			skillBuildersDao.creaNotifica(email_cliente, id_ticket, testo);
 
 			// Costruisco il risultato
 			responseJson.addProperty("risultato", "sucesso!");
-			responseJson.addProperty("contenuto", "recensione inserita");
+			responseJson.addProperty("contenuto", "candidatura avvenuta");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
-		} catch (UtenteNonEsistente e) {
+		} catch (UtenteNonTutor e) {
 			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "email tutor non trovata");
-		} catch (RecensioneGiàInserita e) {
+			responseJson.addProperty("contenuto", "utente non tutor");
+		} catch (TicketNonEsistente e) {
 			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "recensione già inserita");
-		} catch (LezioneNonAvvenuta e) {
-			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "lezione mai avvenuta");
+			responseJson.addProperty("contenuto", "ticket non esistente");
 		} catch (SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "Java Exception");
