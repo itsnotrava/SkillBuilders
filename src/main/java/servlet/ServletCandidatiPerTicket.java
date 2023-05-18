@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
+import exceptions.TicketNonEsistente;
 import exceptions.UtenteNonTutor;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -43,9 +44,12 @@ public class ServletCandidatiPerTicket extends HttpServlet {
 		} catch (UtenteNonTutor e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "utente non tutor");
+		} catch (TicketNonEsistente e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "ticket non esistente");
 		} catch (SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "Java Exception: " + e.toString());
+			responseJson.addProperty("contenuto", "Java Exception");
 		}
 
 		PrintWriter printWriter = response.getWriter();
