@@ -105,7 +105,7 @@ public class SkillBuildersDao {
 		preparedStatement.setString(4, emailTutor);
 		preparedStatement.setString(5, emailCliente);
 
-		ResultSet resultSet = preparedStatement.executeQuery();
+		preparedStatement.execute();
 	}
 
 	public void updateRecensione(int id, int voto, String descrizione, String materia, String emailTutor, String emailCliente) throws SQLException {
@@ -118,7 +118,7 @@ public class SkillBuildersDao {
 		preparedStatement.setString(5, emailCliente);
 		preparedStatement.setInt(6, id);
 
-		ResultSet resultSet = preparedStatement.executeQuery();
+		preparedStatement.execute();
 	}
 
 	public ArrayList<Utente> getTutors(int anno, String comune, String indirizzo) throws SQLException {
@@ -216,7 +216,7 @@ public class SkillBuildersDao {
 		preparedStatement.setInt(2, id_ticket);
 		preparedStatement.setString(3, testo);
 
-		ResultSet resultSet = preparedStatement.executeQuery();
+		preparedStatement.execute();
 	}
 
 }

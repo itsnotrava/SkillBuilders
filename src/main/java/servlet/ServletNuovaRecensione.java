@@ -35,6 +35,7 @@ public class ServletNuovaRecensione extends HttpServlet {
 			// Inserisco il ticket
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
 			skillBuildersDao.checkUtenteEsistente(email_tutor);
+			// FIXME: controllare prima che non ci sia già una recensione inserita per quel tutor
 			skillBuildersDao.insertRecensione(voto, descrizione, materia, email_tutor, email_cliente);
 
 			// Costruisco il risultato
