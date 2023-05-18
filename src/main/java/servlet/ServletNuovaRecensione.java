@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
 import exceptions.LezioneNonAvvenuta;
+import exceptions.RecensioneGiàInserita;
 import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -46,6 +47,9 @@ public class ServletNuovaRecensione extends HttpServlet {
 		} catch (UtenteNonEsistente e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "email tutor non trovata");
+		} catch (RecensioneGiàInserita e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "recensione già inserita");
 		} catch (LezioneNonAvvenuta e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "lezione mai avvenuta");

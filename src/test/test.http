@@ -96,8 +96,8 @@ POST http://localhost:8080/SkillBuilders_war/inserisciTicket
 Content-Type: application/json
 
 {
-  "testo": "Aiuto psicologico per amore",
-  "materia": "sostegno"
+  "testo": "EFFE ENNE",
+  "materia": "informatica"
 }
 
 ### Inserisci recensione
@@ -108,7 +108,7 @@ Content-Type: application/json
   "voto": 5,
   "descrizione": "che schif",
   "materia": "informatica",
-  "email_tutor": "sorghi@gmail.com"
+  "email_tutor": "travaglini@gmail.com"
 }
 
 ### Inserisci notifica (candidatura per ticket)
@@ -133,11 +133,11 @@ POST http://localhost:8080/SkillBuilders_war/modificaRecensione
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": 2,
   "voto": 10,
   "descrizione": "che bella!",
   "materia": "informatica",
-  "email_tutor": "sorghi@gmail.com"
+  "email_tutor": "travaglini@gmail.com"
 }
 
 ### Elimina utente

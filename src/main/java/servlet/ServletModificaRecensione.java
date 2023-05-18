@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
+import exceptions.RecensioneNonEsistente;
 import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -35,7 +36,6 @@ public class ServletModificaRecensione extends HttpServlet {
 
 			// Inserisco il ticket
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.checkUtenteEsistente(email_tutor);
 			skillBuildersDao.updateRecensione(id, voto, descrizione, materia, email_tutor, email_cliente);
 
 			// Costruisco il risultato
@@ -47,6 +47,9 @@ public class ServletModificaRecensione extends HttpServlet {
 		} catch (UtenteNonEsistente e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "email tutor non trovata");
+		} catch (RecensioneNonEsistente e) {
+			responseJson.addProperty("risultato", "boia errore!");
+			responseJson.addProperty("contenuto", "recensione non esistente");
 		} catch (SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "Java Exception");

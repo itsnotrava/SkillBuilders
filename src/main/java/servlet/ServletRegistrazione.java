@@ -47,9 +47,6 @@ public class ServletRegistrazione extends HttpServlet {
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
-		} catch (UtenteGiàEsistente e) {
-			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "utente già esistente");
 		} catch (SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "Java Exception");

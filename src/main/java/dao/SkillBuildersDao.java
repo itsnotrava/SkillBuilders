@@ -99,7 +99,9 @@ public class SkillBuildersDao {
 		preparedStatement.execute();
 	}
 
-	public void updateRecensione(int id, int voto, String descrizione, String materia, String emailTutor, String emailCliente) throws SQLException {
+	public void updateRecensione(int id, int voto, String descrizione, String materia, String emailTutor, String emailCliente) throws SQLException, RecensioneNonEsistente, UtenteNonEsistente {
+		this.checkRecensione(id);
+		this.checkUtenteEsistente(emailTutor);
 		String sql = "UPDATE recensione SET voto=?, descrizione=?, materia=?, email_tutor=?, email_cliente=? WHERE id=?";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setInt(1, voto);
@@ -108,7 +110,6 @@ public class SkillBuildersDao {
 		preparedStatement.setString(4, emailTutor);
 		preparedStatement.setString(5, emailCliente);
 		preparedStatement.setInt(6, id);
-
 		preparedStatement.execute();
 	}
 
@@ -219,6 +220,16 @@ public class SkillBuildersDao {
 		resultSet.next();
 		if (resultSet.getInt(1) == 1) {
 			throw new RecensioneGiàInserita();
+		}
+	}
+
+	public void checkRecensione(int id) throws SQLException, RecensioneNonEsistente {
+		String sql = "SELECT * FROM recensione WHERE id=?";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setInt(1, id);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (!resultSet.next()) {
+			throw new RecensioneNonEsistente();
 		}
 	}
 
