@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
-import exceptions.UtenteNonEsistente;
 import exceptions.UtenteNonTutor;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -33,12 +32,11 @@ public class ServletCandidatiPerTicket extends HttpServlet {
 
 			// Inserisco il ticket
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.checkTutor(email_cliente);
 			skillBuildersDao.creaNotifica(email_cliente, id_ticket, testo);
 
 			// Costruisco il risultato
 			responseJson.addProperty("risultato", "sucesso!");
-			responseJson.addProperty("contenuto", "candidazione effettuata");
+			responseJson.addProperty("contenuto", "candidatura avvenuta");
 		} catch (NullPointerException e) {
 			responseJson.addProperty("risultato", "boia errore!");
 			responseJson.addProperty("contenuto", "formato del body scorretto");
@@ -47,8 +45,9 @@ public class ServletCandidatiPerTicket extends HttpServlet {
 			responseJson.addProperty("contenuto", "utente non tutor");
 		} catch (SQLException e) {
 			responseJson.addProperty("risultato", "boia errore!");
-			responseJson.addProperty("contenuto", "Java Exception");
+			responseJson.addProperty("contenuto", "Java Exception: " + e.toString());
 		}
+
 		PrintWriter printWriter = response.getWriter();
 		printWriter.println(responseJson.toString());
 		printWriter.flush();

@@ -94,6 +94,7 @@ public class SkillBuildersDao {
 	}
 
 	public void insertRecensione(int voto, String descrizione, String materia, String emailTutor, String emailCliente) throws SQLException {
+		// FIXME: bisogna controllare che emailCliente abbia avuto almeno una lezione con emailTutor
 		String sql = "INSERT INTO recensione (voto, descrizione, materia, email_tutor, email_cliente) VALUES (?, ?, ?, ?, ?)";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setInt(1, voto);
@@ -179,7 +180,6 @@ public class SkillBuildersDao {
 		String sql = "SELECT * FROM utente WHERE email=?";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setString(1, email);
-
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if(resultSet.next()) {
 			throw new UtenteGiàEsistente();
@@ -190,7 +190,6 @@ public class SkillBuildersDao {
 		String sql = "SELECT password FROM utente WHERE email=?";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setString(1, email);
-
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if(!resultSet.next() || !BCrypt.checkpw(password, resultSet.getString(1))) {
 			throw new EmailOPasswordErrati();
@@ -216,7 +215,9 @@ public class SkillBuildersDao {
 	}
 
 	// CANDIDANDOSI PER UN TICKET
-	public void creaNotifica(String email_tutor, int id_ticket, String testo) throws SQLException {
+	public void creaNotifica(String email_tutor, int id_ticket, String testo) throws SQLException, UtenteNonTutor {
+		// FIXME: in teoria il problema non dovrebbe porsi, ma bisognerebbe controllare che il ticket esista
+		this.checkTutor(email_tutor);
 		String sql = "INSERT INTO notifica (testo, accettata, email_tutor, id_ticket) VALUES (?, false, ?, ?)";
 		PreparedStatement preparedStatement  = this.con.prepareStatement(sql);
 		preparedStatement.setString(1, testo);

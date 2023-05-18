@@ -34,7 +34,7 @@ Content-Type: application/json
 }
 
 ### Accesso
-POST http://13.42.233.112:8080/skillbuilders_1.0/accesso
+POST http://localhost:8080/SkillBuilders_war/accesso
 Content-Type: application/json
 
 {
@@ -56,7 +56,7 @@ Content-Type: application/json
 {
 }
 
-### Visualizza altrui
+### Visualizza altrui (DA TESTARE)
 POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaAltrui
 Content-Type: application/json
 
@@ -82,7 +82,7 @@ Content-Type: application/json
 }
 
 ### Visualizza tutors
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutors
+POST http://localhost:8080/SkillBuilders_war/visualizzaTutors
 Content-Type: application/json
 
 {
@@ -100,7 +100,7 @@ Content-Type: application/json
   "materia": "sostegno"
 }
 
-### Inserisci recensione (DA TESTARE)
+### Inserisci recensione
 POST http://localhost:8080/SkillBuilders_war/nuovaRecensione
 Content-Type: application/json
 
@@ -111,15 +111,24 @@ Content-Type: application/json
   "email_tutor": "sorghi@gmail.com"
 }
 
+### Inserisci notifica (candidatura per ticket)
+POST http://localhost:8080/SkillBuilders_war/candidatiPerTicket
+Content-Type: application/json
+
+{
+  "testo": "arrivo io!",
+  "id_ticket": 4
+}
+
 ### Cambia flag (DA TESTARE)
-POST http://13.42.233.112:8080/skillbuilders_1.0/cambiaFlag
+POST http://localhost:8080/SkillBuilders_war/cambiaFlag
 Content-Type: application/json
 
 {
   "flagTutor": true
 }
 
-### Modifica recensione (DA TESTARE)
+### Modifica recensione
 POST http://localhost:8080/SkillBuilders_war/modificaRecensione
 Content-Type: application/json
 

@@ -1,3 +1,249 @@
+POST http://localhost:8080/SkillBuilders_war/modificaRecensione
+Content-Type: application/json
+Content-Length: 123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=966D072012500353F91C33820A67D69C
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 1,
+  "voto": 10,
+  "descrizione": "che bella!",
+  "materia": "informatica",
+  "email_tutor": "sorghi@gmail.com"
+}
+
+<> 2023-05-18T224701.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/nuovaRecensione
+Content-Type: application/json
+Content-Length: 110
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=966D072012500353F91C33820A67D69C
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "voto": 5,
+  "descrizione": "che schif",
+  "materia": "informatica",
+  "email_tutor": "sorghi@gmail.com"
+}
+
+<> 2023-05-18T224641.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/candidatiPerTicket
+Content-Type: application/json
+Content-Length: 45
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=966D072012500353F91C33820A67D69C
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "testo": "arrivo io!",
+  "id_ticket": 4
+}
+
+<> 2023-05-18T224533.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/candidatiPerTicket
+Content-Type: application/json
+Content-Length: 40
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=966D072012500353F91C33820A67D69C
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "testo": "ciuao",
+  "id_ticket": 3
+}
+
+<> 2023-05-18T224520.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/candidatiPerTicket
+Content-Type: application/json
+Content-Length: 40
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=966D072012500353F91C33820A67D69C
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "testo": "ciuao",
+  "id_ticket": 3
+}
+
+<> 2023-05-18T224140.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/candidatiPerTicket
+Content-Type: application/json
+Content-Length: 40
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=966D072012500353F91C33820A67D69C
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "testo": "ciuao",
+  "id_ticket": 4
+}
+
+<> 2023-05-18T224053.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/candidatiPerTicket
+Content-Type: application/json
+Content-Length: 40
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=966D072012500353F91C33820A67D69C
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "testo": "ciuao",
+  "id_ticket": 1
+}
+
+<> 2023-05-18T224038.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/accesso
+Content-Type: application/json
+Content-Length: 59
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=30A8FB9CDE01CC2B93DF91CC7ACD3967
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "travaglini@gmail.com",
+  "password": "ciao"
+}
+
+<> 2023-05-18T224018.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/candidatiPerTicket
+Content-Type: application/json
+Content-Length: 40
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=30A8FB9CDE01CC2B93DF91CC7ACD3967
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "testo": "ciuao",
+  "id_ticket": 1
+}
+
+<> 2023-05-18T223815.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/inserisciTicket
+Content-Type: application/json
+Content-Length: 69
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=30A8FB9CDE01CC2B93DF91CC7ACD3967
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "testo": "Aiuto psicologico per amore",
+  "materia": "sostegno"
+}
+
+<> 2023-05-18T223811.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/nuovaRecensione
+Content-Type: application/json
+Content-Length: 110
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=30A8FB9CDE01CC2B93DF91CC7ACD3967
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "voto": 5,
+  "descrizione": "che schif",
+  "materia": "informatica",
+  "email_tutor": "sorghi@gmail.com"
+}
+
+<> 2023-05-18T223612.200.txt
+
+###
+
+POST http://localhost:8080/SkillBuilders_war/accesso
+Content-Type: application/json
+Content-Length: 59
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=609F3878CDD245FFAF6DFA14362A018B
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "travaglini@gmail.com",
+  "password": "ciao"
+}
+
+<> 2023-05-18T223558.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutors
+Content-Type: application/json
+Content-Length: 50
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=281EC801A394DB97C9D3315EA26FA72F
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "anno": 0,
+  "comune": "",
+  "indirizzo": ""
+}
+
+<> 2023-05-18T223249.200.txt
+
+###
+
+POST http://13.42.233.112:8080/skillbuilders_1.0/accesso
+Content-Type: application/json
+Content-Length: 59
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
+Cookie: JSESSIONID=C48FC64B56DB286FC7167FE3AB0F6861
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "travaglini@gmail.com",
+  "password": "ciao"
+}
+
+<> 2023-05-18T223245.200.txt
+
+###
+
 POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutors
 Content-Type: application/json
 Content-Length: 50
@@ -620,254 +866,4 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
 }
-
-###
-
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTickets
-Content-Type: application/json
-Content-Length: 48
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=AC99D4D8EC68130DA6AE55BCBFB48342
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "anno": 0,
-  "comune": "",
-  "materia": ""
-}
-
-<> 2023-05-16T214714.404.html
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/visualizzaProprio
-Content-Type: application/json
-Content-Length: 3
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=59015F7F2F8CB7A1C14111040D4ABD7B
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-}
-
-<> 2023-05-16T214658.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/visualizzaTutors
-Content-Type: application/json
-Content-Length: 50
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=59015F7F2F8CB7A1C14111040D4ABD7B
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "anno": 0,
-  "comune": "",
-  "indirizzo": ""
-}
-
-<> 2023-05-16T214641.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/accesso
-Content-Type: application/json
-Content-Length: 59
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=0F214B773E265FBC6F050AC69F829714
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "travaglini@gmail.com",
-  "password": "ciao"
-}
-
-<> 2023-05-16T214628.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/accesso
-Content-Type: application/json
-Content-Length: 59
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=0F214B773E265FBC6F050AC69F829714
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "travaglini@gmail.com",
-  "password": "ciao"
-}
-
-<> 2023-05-16T214239.500.html
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/registrazione
-Content-Type: application/json
-Content-Length: 183
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=0F214B773E265FBC6F050AC69F829714
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "nome": "sos",
-  "password": "ciao",
-  "email": "travaglini@gmail.com",
-  "anno": 5,
-  "indirizzo": "grafico",
-  "foto": "ciao.jpg",
-  "comune": "Bolognina",
-  "flagTutor": true
-}
-
-<> 2023-05-16T214205.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/visualizzaTicket
-Content-Type: application/json
-Content-Length: 13
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=0F214B773E265FBC6F050AC69F829714
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "id": 3
-}
-
-<> 2023-05-16T152246.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/inserisciTicket
-Content-Type: application/json
-Content-Length: 69
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=0F214B773E265FBC6F050AC69F829714
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "testo": "Aiuto psicologico per amore",
-  "materia": "sostegno"
-}
-
-<> 2023-05-16T152239.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/accesso
-Content-Type: application/json
-Content-Length: 79
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=0F214B773E265FBC6F050AC69F829714
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola.travaglini@aldini.istruzioneer.it",
-  "password": "ciao"
-}
-
-<> 2023-05-16T152212.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/visualizzaTutors
-Content-Type: application/json
-Content-Length: 50
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=0F214B773E265FBC6F050AC69F829714
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "anno": 0,
-  "comune": "",
-  "indirizzo": ""
-}
-
-<> 2023-05-16T152145.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/registrazione
-Content-Type: application/json
-Content-Length: 212
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=0F214B773E265FBC6F050AC69F829714
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "nome": "itsnotrava",
-  "password": "secret",
-  "email": "nicola.travaglini@aldini.istruzioneer.it",
-  "anno": 5,
-  "indirizzo": "grafico",
-  "foto": "ciao.jpg",
-  "comune": "Bolognina",
-  "flagTutor": true
-}
-
-<> 2023-05-16T152135.200.txt
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/visualizzaTicket
-Content-Type: application/json
-Content-Length: 13
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=0F214B773E265FBC6F050AC69F829714
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "id": 2
-}
-
-<> 2023-05-16T152101.200.txt
-
-###
-
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTickets
-Content-Type: application/json
-Content-Length: 48
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=AC99D4D8EC68130DA6AE55BCBFB48342
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "anno": 0,
-  "comune": "",
-  "materia": ""
-}
-
-<> 2023-05-16T152028.404.html
-
-###
-
-POST http://localhost:8080/SkillBuilders_war/accesso
-Content-Type: application/json
-Content-Length: 66
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.6)
-Cookie: JSESSIONID=6DA606CE50A3D16192A61EA5E67E62B5
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "email": "nicola.travaglini@gmail.com",
-  "password": "ciao"
-}
-
-<> 2023-05-16T152025.200.txt
 
