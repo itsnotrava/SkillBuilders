@@ -34,7 +34,7 @@ Content-Type: application/json
 }
 
 ### Accesso
-POST http://localhost:8080/SkillBuilders_war/accesso
+POST http://13.42.233.112:8080/skillbuilders_1.0/accesso
 Content-Type: application/json
 
 {
@@ -82,7 +82,7 @@ Content-Type: application/json
 }
 
 ### Visualizza tutors
-POST http://localhost:8080/SkillBuilders_war/visualizzaTutors
+POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaTutors
 Content-Type: application/json
 
 {

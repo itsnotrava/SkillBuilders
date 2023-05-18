@@ -1,9 +1,6 @@
 package dao;
 
-import exceptions.TicketNonEsistente;
-import exceptions.UtenteNonEsistente;
-import exceptions.UtenteGiàEsistente;
-import exceptions.EmailOPasswordErrati;
+import exceptions.*;
 import factory.ConnectionFactory;
 import model.Ticket;
 import model.Utente;
@@ -97,7 +94,7 @@ public class SkillBuildersDao {
 	}
 
 	public void insertRecensione(int voto, String descrizione, String materia, String emailTutor, String emailCliente) throws SQLException {
-		String sql = "INSERT INTO recensione (voto, descrizione, materia, emailTutor, emailCliente) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO recensione (voto, descrizione, materia, email_tutor, email_cliente) VALUES (?, ?, ?, ?, ?)";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setInt(1, voto);
 		preparedStatement.setString(2, descrizione);
@@ -109,7 +106,7 @@ public class SkillBuildersDao {
 	}
 
 	public void updateRecensione(int id, int voto, String descrizione, String materia, String emailTutor, String emailCliente) throws SQLException {
-		String sql = "UPDATE recensione SET voto=?, descrizione=?, materia=?, emailTutor=?, emailCliente=? WHERE id=?";
+		String sql = "UPDATE recensione SET voto=?, descrizione=?, materia=?, email_tutor=?, email_cliente=? WHERE id=?";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setInt(1, voto);
 		preparedStatement.setString(2, descrizione);
@@ -200,6 +197,16 @@ public class SkillBuildersDao {
 		}
 	}
 
+	public void checkTutor(String email) throws SQLException, UtenteNonTutor {
+		String sql = "SELECT * FROM utente WHERE email=? AND flag_tutor=true";
+		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
+		preparedStatement.setString(1, email);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (!resultSet.next()) {
+			throw new UtenteNonTutor();
+		}
+	}
+
 	public void eliminaUtente(String email) throws SQLException {
 		String sql = "DELETE FROM utente WHERE email=?";
 		PreparedStatement preparedStatement  = this.con.prepareStatement(sql);
@@ -209,12 +216,12 @@ public class SkillBuildersDao {
 	}
 
 	// CANDIDANDOSI PER UN TICKET
-	public void creaNotifica(String email_tutor, int id_ticket, String testo) throws SQLException{
-		String sql = "INSERT INTO notifica (testo, materia, email_cliente) VALUES (?, ?, ?)";
+	public void creaNotifica(String email_tutor, int id_ticket, String testo) throws SQLException {
+		String sql = "INSERT INTO notifica (testo, accettata, email_tutor, id_ticket) VALUES (?, false, ?, ?)";
 		PreparedStatement preparedStatement  = this.con.prepareStatement(sql);
-		preparedStatement.setString(1, email_tutor);
-		preparedStatement.setInt(2, id_ticket);
-		preparedStatement.setString(3, testo);
+		preparedStatement.setString(1, testo);
+		preparedStatement.setString(2, email_tutor);
+		preparedStatement.setInt(3, id_ticket);
 
 		preparedStatement.execute();
 	}
