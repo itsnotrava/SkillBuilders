@@ -52,7 +52,7 @@ public class ServletVisualizzaAltrui extends HttpServlet {
             // COSTRUISCO RISULTATO
             /*
             JsonArray arrayUtenti = new JsonArray();
-            for(int i=0; i<10; i++){ // FIXME: for non corretto, dao da implementare
+            for(int i=0; i<10; i++){ //
                 JsonObject altrui = new JsonObject();
                 altrui.addProperty("nome", "Francesco");
                 altrui.addProperty("email", "sorghi@gmail.com");
