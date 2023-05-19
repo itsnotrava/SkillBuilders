@@ -1,11 +1,17 @@
 package servlet;
 
 import java.io.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dao.SkillBuildersDao;
+import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.Ticket;
 
 @WebServlet(name = "VisualizzaAltrui", value = "/visualizzaAltrui")
 public class ServletVisualizzaAltrui extends HttpServlet {
@@ -20,23 +26,56 @@ public class ServletVisualizzaAltrui extends HttpServlet {
         // fromJason => trasforma da stringa a Json, prende in input -stringa- -tipo destinazione-
 
         JsonObject responseJson = new JsonObject();
+        JsonObject contenuto = new JsonObject();
         try {
-            HttpSession session = request.getSession();
+            //HttpSession session = request.getSession();
+            //String email = (String) session.getAttribute("email");
 
-            String email = (String) session.getAttribute("email");
-            // TODO
+            // Prendo i dati dal body
+            String email = jsBody.get("email").getAsString();
+            SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
+            // CONTROLLO CHE L'UTENTE ESISTE
+            skillBuildersDao.checkUtenteEsistente(email);
+            // PRENDO DATI DAL DB
+            skillBuildersDao.getUtente(email);
+            // COSTRUISCO IL RISULTATO
+            contenuto.addProperty("nome", "Francesco");
+            contenuto.addProperty("email", "sorghi@gmail.com");
+            contenuto.addProperty("anno", 3);
+            contenuto.addProperty("indirizzo", "informatico");
+            contenuto.addProperty("foto", "1110001100101001");
+            contenuto.addProperty("quartiere", "Navile");
+
             responseJson.addProperty("risultato", "sucesso!");
-            JsonObject contenutoJson = new JsonObject();
-            contenutoJson.addProperty("nome", "Francesco");
-            contenutoJson.addProperty("email", "sorghi@gmail.com");
-            contenutoJson.addProperty("anno", 3);
-            contenutoJson.addProperty("indirizzo", "informatico");
-            contenutoJson.addProperty("foto", "1110001100101001");
-            contenutoJson.addProperty("quartiere", "Navile");
-            responseJson.add("contenuto", contenutoJson);
+            responseJson.add("contenuto", contenuto);
+
+            // COSTRUISCO RISULTATO
+            /*
+            JsonArray arrayUtenti = new JsonArray();
+            for(int i=0; i<10; i++){ // FIXME: for non corretto, dao da implementare
+                JsonObject altrui = new JsonObject();
+                altrui.addProperty("nome", "Francesco");
+                altrui.addProperty("email", "sorghi@gmail.com");
+                altrui.addProperty("anno", 3);
+                altrui.addProperty("indirizzo", "informatico");
+                altrui.addProperty("foto", "1110001100101001");
+                altrui.addProperty("quartiere", "Navile");
+
+                arrayUtenti.add(altrui);
+            }
+            responseJson.addProperty("risultato", "sucesso!");
+            responseJson.add("contenuto", arrayUtenti);
+            */
+
         } catch (NullPointerException e) {
             responseJson.addProperty("risultato", "boia errore!");
             responseJson.addProperty("contenuto", "formato del body scorretto");
+        } catch (SQLException e) {
+            responseJson.addProperty("risultato", "boia errore!");
+            responseJson.addProperty("contenuto", "java exception");
+        } catch (UtenteNonEsistente e) {
+            responseJson.addProperty("risultato", "boia errore!");
+            responseJson.addProperty("contenuto", "email non trovata");
         }
 
         // Invio il risultato al client
