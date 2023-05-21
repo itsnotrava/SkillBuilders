@@ -11,7 +11,7 @@ function accesso() {
         "password": "ciao"
     };
     let request = new XMLHttpRequest();
-    request.open("POST", "http://13.42.233.112:8080/skillbuilders_1.0/accesso", true);
+    request.open("POST", "https://13.42.233.112:8443/skillbuilders_1.0/accesso", true);
     request.withCredentials = true;
     // request.setRequestHeader("Content-Type", "application/json");
     request.onload = function() {
@@ -25,7 +25,7 @@ function visualizzaProprio() {
     let body = {
     };
     let request = new XMLHttpRequest();
-    request.open("POST", "http://13.42.233.112:8080/skillbuilders_1.0/visualizzaProprio", true);
+    request.open("POST", "https://13.42.233.112:8443/skillbuilders_1.0/visualizzaProprio", true);
     request.withCredentials = true;
     // request.setRequestHeader("Content-Type", "application/json");
     request.onload = function() {

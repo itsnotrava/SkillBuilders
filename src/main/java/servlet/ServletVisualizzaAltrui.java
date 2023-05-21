@@ -2,16 +2,14 @@ package servlet;
 
 import java.io.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dao.SkillBuildersDao;
 import exceptions.UtenteNonEsistente;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.Ticket;
+import model.Utente;
 
 @WebServlet(name = "VisualizzaAltrui", value = "/visualizzaAltrui")
 public class ServletVisualizzaAltrui extends HttpServlet {
@@ -37,14 +35,14 @@ public class ServletVisualizzaAltrui extends HttpServlet {
             // CONTROLLO CHE L'UTENTE ESISTE
             skillBuildersDao.checkUtenteEsistente(email);
             // PRENDO DATI DAL DB
-            skillBuildersDao.getUtente(email);
+            Utente utente = skillBuildersDao.getUtente(email);
             // COSTRUISCO IL RISULTATO
-            contenuto.addProperty("nome", "Francesco");
-            contenuto.addProperty("email", "sorghi@gmail.com");
-            contenuto.addProperty("anno", 3);
-            contenuto.addProperty("indirizzo", "informatico");
-            contenuto.addProperty("foto", "1110001100101001");
-            contenuto.addProperty("quartiere", "Navile");
+            contenuto.addProperty("nome", utente.nome);
+            contenuto.addProperty("email", utente.email);
+            contenuto.addProperty("anno", utente.anno);
+            contenuto.addProperty("indirizzo", utente.indirizzo);
+            contenuto.addProperty("foto", utente.nome_foto);
+            contenuto.addProperty("comune", utente.comune);
 
             responseJson.addProperty("risultato", "sucesso!");
             responseJson.add("contenuto", contenuto);
