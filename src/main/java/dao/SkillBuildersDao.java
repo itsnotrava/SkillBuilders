@@ -127,7 +127,12 @@ public class SkillBuildersDao {
 	}
 
 	public ArrayList<Ticket> getTickets(int anno, String comune, String materia) throws SQLException {
-		String sql = "SELECT t.id, t.testo, t.materia, u.* FROM ticket t INNER JOIN utente u ON t.email_cliente=u.email AND (u.anno=? OR ?=0) AND (u.comune=? OR ?='') AND (t.materia=? OR ?='')";
+		String sql = "" +
+				//"SELECT t.id, t.testo, t.materia, u.* FROM ticket t INNER JOIN utente u ON t.email_cliente=u.email AND (u.anno=? OR ?=0) AND (u.comune=? OR ?='') AND (t.materia=? OR ?='')";
+				"SELECT t.id, t.testo, t.materia, u.* " +
+				"FROM ticket t, utente u, notifica n WHERE (t.email_cliente=u.email) AND (n.id_ticket=t.id)" +
+				"AND (u.anno=? OR ?=0) AND (u.comune=? OR ?='') AND (t.materia=? OR ?='') AND (n.accettata=?)";
+				// CONTROLL CHE NON SIA STATA ACCETTATA E CONVALIDATA
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setInt(1, anno);
 		preparedStatement.setInt(2, anno);
@@ -135,6 +140,8 @@ public class SkillBuildersDao {
 		preparedStatement.setString(4, comune);
 		preparedStatement.setString(5, materia);
 		preparedStatement.setString(6, materia);
+		preparedStatement.setBoolean(7, false);
+
 		ResultSet resultSet = preparedStatement.executeQuery();
 		return this.getTicketsFromResultSet(resultSet);
 	}
@@ -251,6 +258,18 @@ public class SkillBuildersDao {
 		preparedStatement.setInt(3, id_ticket);
 		preparedStatement.execute();
 	}
+
+	// ACCETTA/disaccetta UN CANDIDATO
+	public void accettaCandidato(int id_notifica, Boolean accettata) throws SQLException{
+		String sql = "UPDATE notifica SET accettata = ? WHERE id=?";
+		PreparedStatement preparedStatement  = this.con.prepareStatement(sql);
+		preparedStatement.setBoolean(1, accettata);
+		preparedStatement.setInt(2, id_notifica);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
+	}
+
+
 
 }
 
