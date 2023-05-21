@@ -9,8 +9,9 @@ public class Utente {
 	public String nome_foto;
 	public String comune;
 	public boolean flag_tutor;
+	public String biografia;
 
-	public Utente(String email, String nome, String password, int anno, String indirizzo, String nome_foto, String comune, boolean flag_tutor) {
+	public Utente(String email, String nome, String password, int anno, String indirizzo, String nome_foto, String comune, boolean flag_tutor, String biografia) {
 		this.email = email;
 		this.nome = nome;
 		this.password = password;
@@ -19,5 +20,6 @@ public class Utente {
 		this.nome_foto = nome_foto;
 		this.comune = comune;
 		this.flag_tutor = flag_tutor;
+		this.biografia = biografia;
 	}
 }

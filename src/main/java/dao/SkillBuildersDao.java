@@ -26,7 +26,8 @@ public class SkillBuildersDao {
 		String nome_foto = resultSet.getString(6);
 		String comune = resultSet.getString(7);
 		boolean flag_tutor = resultSet.getBoolean(8);
-		return new Utente(email, nome, password, anno, indirizzo, nome_foto, comune, flag_tutor);
+		String biografia = resultSet.getString(9);
+		return new Utente(email, nome, password, anno, indirizzo, nome_foto, comune, flag_tutor, biografia);
 	}
 
 	private Ticket getTicketFromResultSet(ResultSet resultSet) throws SQLException {
@@ -41,7 +42,8 @@ public class SkillBuildersDao {
 		String nome_fotoUtente = resultSet.getString(9);
 		String comuneUtente = resultSet.getString(10);
 		boolean flag_tutorUtente = resultSet.getBoolean(11);
-		Utente utente = new Utente(emailUtente, nomeUtente, passwordUtente, annoUtente, indirizzoUtente, nome_fotoUtente, comuneUtente, flag_tutorUtente);
+		String biografiaUtente = resultSet.getString(12);
+		Utente utente = new Utente(emailUtente, nomeUtente, passwordUtente, annoUtente, indirizzoUtente, nome_fotoUtente, comuneUtente, flag_tutorUtente, biografiaUtente);
 		return new Ticket(id, testo, materia, utente);
 	}
 
@@ -61,8 +63,8 @@ public class SkillBuildersDao {
 		return tickets;
 	}
 
-	public void insertUtente(String nome, String password, String email, int anno, String indirizzo, String foto, String comune, boolean flagTutor) throws SQLException {
-		String sql = "INSERT INTO utente (email, nome, password, anno, indirizzo, nome_foto, comune, flag_tutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	public void insertUtente(String nome, String password, String email, int anno, String indirizzo, String foto, String comune, boolean flagTutor, String biografia) throws SQLException {
+		String sql = "INSERT INTO utente (email, nome, password, anno, indirizzo, nome_foto, comune, flag_tutor, biografia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement preparedStatement = this.con.prepareStatement(sql);
 		preparedStatement.setString(1, email);
 		preparedStatement.setString(2, nome);
@@ -72,6 +74,7 @@ public class SkillBuildersDao {
 		preparedStatement.setString(6, foto);
 		preparedStatement.setString(7, comune);
 		preparedStatement.setBoolean(8, flagTutor);
+		preparedStatement.setString(9, biografia);
 		preparedStatement.execute();
 	}
 
@@ -267,8 +270,6 @@ public class SkillBuildersDao {
 		preparedStatement.setInt(2, id_notifica);
 		preparedStatement.execute();
 	}
-
-
 
 }
 

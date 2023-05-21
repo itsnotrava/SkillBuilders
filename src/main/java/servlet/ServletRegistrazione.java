@@ -21,7 +21,6 @@ public class ServletRegistrazione extends HttpServlet {
 		String body = getBody(request);
 		JsonObject temp = new Gson().fromJson(body, JsonObject.class);
 
-
 		JsonObject responseJson = new JsonObject();
 		// PRENDO I PARAMETRI DAL BODY
 		try {
@@ -33,6 +32,7 @@ public class ServletRegistrazione extends HttpServlet {
 			String foto = temp.get("foto").getAsString();
 			String comune = temp.get("comune").getAsString();
 			boolean flagTutor = temp.get("flagTutor").getAsBoolean();
+			String biografia = temp.get("biografia").getAsString();
 
 			// OTTENGO HAS DELLA PASSWORD (BYcript)
 			//password = model.Hash.creoHash(password); NON FUNZIONA
@@ -40,7 +40,7 @@ public class ServletRegistrazione extends HttpServlet {
 
 			// INSERISCO NEL DB
 			SkillBuildersDao skillBuildersDao = new SkillBuildersDao();
-			skillBuildersDao.insertUtente(nome, password, email, anno, indirizzo, foto, comune, flagTutor);
+			skillBuildersDao.insertUtente(nome, password, email, anno, indirizzo, foto, comune, flagTutor, biografia);
 
 			responseJson.addProperty("risultato", "sucesso!");
 			responseJson.addProperty("contenuto", "registrazione avvenuta");

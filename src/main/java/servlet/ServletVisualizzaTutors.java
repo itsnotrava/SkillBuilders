@@ -47,7 +47,7 @@ public class ServletVisualizzaTutors extends HttpServlet {
                 JsonObject jsTutor = new JsonObject();
                 jsTutor.addProperty("email", tutor.email);
                 jsTutor.addProperty("nome", tutor.nome);
-                jsTutor.addProperty("biografia", ""); // FIXME: introdurre biografia
+                jsTutor.addProperty("biografia", tutor.biografia);
                 jsTutors.add(jsTutor);
             }
             responseJson.addProperty("risultato", "sucesso!");
