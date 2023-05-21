@@ -30,7 +30,8 @@ Content-Type: application/json
   "indirizzo": "grafico",
   "foto": "ciao.jpg",
   "comune": "Bolognina",
-  "flagTutor": true
+  "flagTutor": true,
+  "biografia": "ciao ciao ciao"
 }
 
 ### Accesso
@@ -56,11 +57,12 @@ Content-Type: application/json
 {
 }
 
-### Visualizza altrui (DA TESTARE)
-POST http://13.42.233.112:8080/skillbuilders_1.0/visualizzaAltrui
+### Visualizza altrui
+POST http://localhost:8080/SkillBuilders_war/visualizzaAltrui
 Content-Type: application/json
 
 {
+  "email": "sorghi@gmail.com"
 }
 
 ### Visualizza tickets
@@ -78,7 +80,7 @@ POST http://localhost:8080/SkillBuilders_war/visualizzaTicket
 Content-Type: application/json
 
 {
-  "id": 3
+  "id": 6
 }
 
 ### Visualizza tutors
@@ -117,7 +119,7 @@ Content-Type: application/json
 
 {
   "testo": "arrivo io!",
-  "id_ticket": 4
+  "id_ticket": 6
 }
 
 ### Cambia flag (DA TESTARE)
