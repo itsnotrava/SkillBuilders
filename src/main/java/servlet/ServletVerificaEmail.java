@@ -55,6 +55,9 @@ public class ServletVerificaEmail extends HttpServlet {
 			responseJson.addProperty("contenuto", "Java Exception: " + e.toString());
 		}
 
+		String header = response.getHeader("Set-Cookie");
+		response.setHeader("Set-Cookie", header+"; SameSite=None");
+		
 		PrintWriter printWriter = response.getWriter();
 		printWriter.println(responseJson.toString());
 		printWriter.flush();
